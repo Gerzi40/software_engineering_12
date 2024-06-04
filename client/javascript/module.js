@@ -77,6 +77,12 @@ export const getScheduleByRenterId = async (renterId) => {
     return data
 }
 
+export const getSchedule = async () => {
+    const res = await fetch("http://localhost:5000/schedule")
+    const data = await res.json()
+    return data
+}
+
 export const insertSchedule = async (courtId, date, typeIds, renterId) => {
     const res = await fetch(`http://localhost:5000/schedule`, {
         method: 'POST',

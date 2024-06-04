@@ -111,6 +111,16 @@ app.get("/court-types", (req, res) => {
 })
 
 /* SCHEDULE */
+app.get("/schedule", (req, res) => {
+    db.query("SELECT * FROM schedule", (err, result) => {
+        if(err){
+            res.send({message: err})
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 app.get("/schedule/court-id/:courtId/date/:date", (req, res) => {
     const courtId = req.params.courtId
     const date = req.params.date
