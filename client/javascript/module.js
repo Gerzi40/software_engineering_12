@@ -16,7 +16,6 @@ export const getCourtsByOwnerId = async (ownerId) => {
     return data
 }
 
-<<<<<<< HEAD
 export const getCities = async () => {
     const city = [
         'Jakarta',
@@ -28,8 +27,6 @@ export const getCities = async () => {
     return city
 }
 
-=======
->>>>>>> b027b4ae07363fd1ac42edae1362d9851671992c
 export const insertCourt = async (ownerId, name, address, typeId, price, image) => {
     const res = await fetch(`http://localhost:5000/court`, {
         method: 'POST',
@@ -91,15 +88,12 @@ export const getScheduleByRenterId = async (renterId) => {
     return data
 }
 
-<<<<<<< HEAD
-=======
 export const getSchedule = async () => {
     const res = await fetch("http://localhost:5000/schedule")
     const data = await res.json()
     return data
 }
 
->>>>>>> b027b4ae07363fd1ac42edae1362d9851671992c
 export const insertSchedule = async (courtId, date, typeIds, renterId) => {
     const res = await fetch(`http://localhost:5000/schedule`, {
         method: 'POST',
