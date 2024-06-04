@@ -1,0 +1,88 @@
+CREATE DATABASE seDB;
+
+CREATE TABLE user (
+	userId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    userName VARCHAR(100) NOT NULL,
+    userPassword VARCHAR(100) NOT NULL,
+    userRole VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE schedule_type (
+	scheduleTypeId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    startTime VARCHAR(8) NOT NULL,
+    endTime VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE court_type (
+	courtTypeId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    courtTypeName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE court (
+	courtId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ownerId INT NOT NULL,
+    courtName VARCHAR(100) NOT NULL,
+    courtAddress VARCHAR(1000) NOT NULL,
+    courtTypeId INT NOT NULL,
+    courtPrice INT NOT NULL,
+    courtRating DOUBLE NOT NULL,
+    courtRatingCount INT NOT NULL,
+    courtImage VARCHAR(100) NOT NULL,
+    CONSTRAINT FK_court_sellerId FOREIGN KEY (ownerId) REFERENCES user (userId),
+    CONSTRAINT FK_court_courtTypeId FOREIGN KEY (courtTypeId) REFERENCES court_type (courtTypeId)
+);
+
+CREATE TABLE schedule (
+	courtId INT NOT NULL,
+    scheduleDate VARCHAR(10) NOT NULL,
+    scheduleTypeId INT NOT NULL,
+    renterId INT NOT NULL,
+    CONSTRAINT FK_schedule_courtId FOREIGN KEY (courtId) REFERENCES court (courtId),
+    CONSTRAINT FK_schedule_scheduleTypeId FOREIGN KEY (scheduleTypeId) REFERENCES schedule_type (scheduleTypeId),
+    CONSTRAINT FK_schedule_buyerId FOREIGN KEY (renterId) REFERENCES user (userId),
+    PRIMARY KEY(courtId, scheduleDate, scheduleTypeId)
+);
+
+INSERT INTO user (userName, userPassword, userRole) VALUES
+	('owner1', 'owner1', 'owner'),
+	('owner2', 'owner2', 'owner'),
+    ('owner3', 'owner3', 'owner'),
+    ('renter1', 'renter1', 'renter'),
+    ('renter2', 'renter2', 'renter');
+
+INSERT INTO schedule_type (startTime, endTime) VALUES
+	('09:00:00', '10:00:00'),
+    ('10:00:00', '11:00:00'),
+    ('11:00:00', '12:00:00'),
+    ('12:00:00', '13:00:00'),
+    ('13:00:00', '14:00:00'),
+    ('14:00:00', '15:00:00'),
+    ('15:00:00', '16:00:00'),
+    ('16:00:00', '17:00:00'),
+    ('17:00:00', '18:00:00'),
+    ('18:00:00', '19:00:00'),
+    ('19:00:00', '20:00:00'),
+    ('20:00:00', '21:00:00');
+
+INSERT INTO court_type (courtTypeName) VALUES
+	('Sepak Bola'),
+    ('Badminton'),
+    ('Basket'),
+    ('Tenis'),
+    ('Lari');
+
+INSERT INTO court (ownerId, courtName, courtAddress, courtTypeId, courtPrice, courtRating, courtRatingCount, courtImage) VALUES
+	(1, 'Lapangan Persima', '5, Jl. Kali Anyar IV No.RT.2, RT.5/RW.3, Kali Anyar, Kec. Tambora, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11310', 1, 10000, 0, 0, 'a.jpeg'),
+	(1, 'Diaz Badminton Hall', '6, Jl. KS Tubun IIC No.29, RT.4/RW.1, Slipi, Kec. Palmerah, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11410', 2, 20000, 5, 1, 'b.jpeg'),
+    (2, 'Lapangan Basket Rajawali', 'Jl. Kebon Jeruk XV Jl. Mangga Besar IV H No.20, RT.14/RW.8, Maphar, Kec. Taman Sari, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11160', 3, 30000, 4, 1, 'c.jpeg'),
+	(2, 'Lapangan Tenis Dan Futsal Jatipulo', 'Jl. Tunjung II No.7, RT.14/RW.3, Jatipulo, Kec. Palmerah, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11430', 4, 40000, 3, 1, 'd.jpeg'),
+    (3, 'Gelora Bung Karno Main Stadium', 'Jl. Pintu Satu Senayan, Gelora, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270', 5, 50000, 4.5, 2, 'e.jpeg'),
+	(3, 'GOR Badminton TVRI', '1, Jl. Gerbang Pemuda No.2, RT.1/RW.3, Gelora, Tanah Abang, Central Jakarta City, Jakarta 10270', 2, 60000, 0, 1, 'f.jpeg');
+
+INSERT INTO schedule (courtId, scheduleDate, scheduleTypeId, renterId) VALUES
+	(1, '2024-05-26', 1, 4),
+	(1, '2024-05-26', 2, 4),
+    (1, '2024-05-27', 1, 4),
+	(2, '2024-05-26', 1, 5),
+	(2, '2024-05-26', 2, 5),
+    (2, '2024-05-26', 3, 5);
