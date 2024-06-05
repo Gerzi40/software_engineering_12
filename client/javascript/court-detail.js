@@ -12,16 +12,6 @@ const getParam = (parameterName) => {
 
 window.onload = async () => {
 
-    const userId = localStorage.getItem("user")
-
-    if(userId != null) {
-        const user = await getUserByUserId(userId)
-    
-        if(user[0].userRole != "renter") {
-            window.location.href = "./index.html"
-        }
-    }
-
     const courtId = getParam('court-id');
 
     const court = await getCourtByCourtId(courtId)

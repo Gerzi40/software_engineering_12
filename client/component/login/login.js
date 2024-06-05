@@ -33,7 +33,19 @@ document.getElementById("loginSubmitButton").addEventListener("click", async () 
         const res = await login(name, password)
         if(res.message == "Login Success") {
             localStorage.setItem("user", res.user.userId)
-            window.location.href = "index.html"
+
+            const href = window.location.href
+            const indexOfHtml = href.indexOf('.html')
+            const page = href.slice(29, indexOfHtml)
+
+            if(page == 'index' || page == 'court' || page == 'court-detail' || page == 'booking' || page == 'about' || page == 'my-account') {
+                localStorage.setItem('user-role', 'renter')
+            } else if(page == 'insert-court' || page == 'manual-booking' || page == 'my-court' || page == 'update-court') {
+                localStorage.setItem('user-role', 'owner')
+            }
+
+            window.location.reload()
+
         } else {
             statusLabel.innerHTML = res.message
         }

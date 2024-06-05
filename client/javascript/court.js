@@ -1,15 +1,6 @@
 import { getCities, getCourtTypes, getCourts, getUserByUserId } from "./module.js";
 
 window.onload = async () => {
-    const userId = localStorage.getItem("user");
-
-    if (userId != null) {
-        const user = await getUserByUserId(userId);
-
-        if (user[0].userRole != "renter") {
-            window.location.href = "./index.html";
-        }
-    }
 
     const courtTypes = await getCourtTypes()
     courtTypes.forEach(courtType => {

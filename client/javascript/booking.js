@@ -5,20 +5,16 @@ window.onload = async () => {
     const userId = localStorage.getItem("user")
 
     if(userId == null) {
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
+        return
+    }
+
+    if(localStorage.getItem('user-role') != 'renter') {
         window.location.href = "./index.html"
     }
 
-    const user = await getUserByUserId(userId)
-
-    if(user[0].userRole != "renter") {
-        window.location.href = "./index.html"
-    }
-
-    // const userId = localStorage.getItem("user")
-    // const user = await getUserByUserId(userId)
-    
-    const schedules = await getScheduleByRenterId(user[0].userId)
-    // console.log(schedules)
+    const schedules = await getScheduleByRenterId(userId)
 
     schedules.forEach(schedule => {
         const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)

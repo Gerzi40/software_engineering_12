@@ -16,14 +16,14 @@ const getParam = (parameterName) => {
 
 window.onload = async () => {
     
-    const ownerId = localStorage.getItem("owner")
+    if(localStorage.getItem("user") == null) {
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
+        return
+    }
 
-    if(ownerId != null) {
-        const owner = await getUserByUserId(ownerId)
-        
-        if(owner[0].userRole != "renter") {
-            window.location.href = "./index.html"
-        }
+    if(localStorage.getItem('user-role') != 'owner') {
+        window.location.href = "./index.html"
     }
 
     const courtId = getParam('court-id');

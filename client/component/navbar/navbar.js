@@ -1,6 +1,6 @@
 window.onscroll = () => {
     const nav = document.getElementById('nav');
-    if ( window.pageYOffset > 0 ) {
+    if ( window.scrollY > 0 ) {
         nav.classList.add("backgroundWhite");
     } else {
         nav.classList.remove("backgroundWhite");
@@ -39,8 +39,12 @@ if(localStorage.getItem("user") != null) {
     document.getElementById("myAccountButton").style.display = "inline"
 
     document.getElementById("guestLink").style.display = "none"
-    document.getElementById("renterLink").style.display = "flex"
-    document.getElementById("ownerLink").style.display = "flex"
+
+    if(localStorage.getItem('user-role') == 'renter') {
+        document.getElementById("renterLink").style.display = "flex"
+    } else {
+        document.getElementById("ownerLink").style.display = "flex"
+    }
 }
 
 document.getElementById("registerButton").addEventListener("click", () => {

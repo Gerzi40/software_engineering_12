@@ -9,6 +9,16 @@ const getParam = (parameterName) => {
 
 window.onload = async () => {
 
+    if(localStorage.getItem("user") == null) {
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
+        return
+    }
+
+    if(localStorage.getItem('user-role') != 'owner') {
+        window.location.href = "./index.html"
+    }
+
     const courtTypes = await getCourtTypes()
     // console.log(courtTypes)
     courtTypes.forEach(courtType => {

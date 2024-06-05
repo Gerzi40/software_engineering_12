@@ -2,15 +2,13 @@ import { getCourtTypes, getUserByUserId, insertCourt } from "./module.js"
 
 window.onload = async () => {
 
-    const userId = localStorage.getItem("user")
-
-    if(userId == null) {
-        window.location.href = "./index.html"
+    if(localStorage.getItem("user") == null) {
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
+        return
     }
 
-    const user = await getUserByUserId(userId)
-
-    if(user[0].userRole != "owner") {
+    if(localStorage.getItem('user-role') != 'owner') {
         window.location.href = "./index.html"
     }
 
