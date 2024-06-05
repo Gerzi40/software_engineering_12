@@ -61,3 +61,32 @@ document.getElementById("insertButton").addEventListener("click", async () => {
         window.location.href = "my-court.html"
     }
 })
+
+document.getElementById('downloadButton').addEventListener('click',() => {
+    console.log("X")
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('No file selected!');
+        return;
+    }
+
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+        const fileContents = event.target.result;
+        const blob = new Blob([fileContents], { type: file.type });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
+    reader.readAsArrayBuffer(file);
+})

@@ -93,21 +93,17 @@ const fillScheduleDiv = async (date) => {
             // console.log("hello")
             const clickedButtonId = extractNumbersFromString(button.id);
             // Loop through each schedule
-            let booked = false; // Flag to track whether a booking is found
+            let booked = false;
 
             // Loop through each schedule
             for (const schedule of Schedule) {
-                // console.log(clickedButtonId);
-                // console.log(`button${schedule.scheduleTypeId}`);
-                // console.log(dateFormat);
-                // console.log(schedule.scheduleDate);
                 // Compare schedule date and schedule type ID with the clicked button ID and current date
                 if (clickedButtonId == schedule.scheduleTypeId && dateFormat == schedule.scheduleDate) {
                     infoAndBook.style.display = "none";
-                    console.log(1);
+                    // console.log(1);
                     paragraf.textContent = `The Court is booked by ${schedule.renterId}`;
-                    booked = true; // Set flag to true when a booking is found
-                    break; // Exit the loop when a booking is found
+                    booked = true;
+                    break;
                 }
             }
             // If not booked, set paragraph text accordingly
@@ -125,7 +121,7 @@ const fillScheduleDiv = async (date) => {
 
 // masukin manual book kyk user aja
 const manual_Book = async (clickedButtonId) => {
-    console.log(clickedButtonId)
+    // console.log(clickedButtonId)
     infoAndBook.style.display = "block";
     infoAndBook.addEventListener('click', async (clickedButtonId) => {
 

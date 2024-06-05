@@ -59,7 +59,8 @@ document.getElementById("bookButton").addEventListener("click", async () => {
     const userId = localStorage.getItem("user")
 
     if(userId == null) {
-        window.location.href = "./index.html"
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
     }
 
     const user = await getUserByUserId(userId)

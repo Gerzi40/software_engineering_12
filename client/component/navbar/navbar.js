@@ -1,4 +1,11 @@
-import { getUserByUserId } from "../../javascript/module.js"
+window.onscroll = () => {
+    const nav = document.getElementById('nav');
+    if ( window.pageYOffset > 0 ) {
+        nav.classList.add("backgroundWhite");
+    } else {
+        nav.classList.remove("backgroundWhite");
+    }
+}
 
 document.getElementById("nav").innerHTML = `
     <div id="navLogo">
@@ -22,23 +29,18 @@ document.getElementById("nav").innerHTML = `
     <div>
         <a id="loginButton">Sign In</a>
         <a id="registerButton">Sign Up</a>
-        <label id="greetLabel" style="display: none"></label>
-        <button id="logoutButton" style="display: none">Logout</button>
+        <a href="my-account.html" id="myAccountButton">My Account</a>
     </div>
 `
 
 if(localStorage.getItem("user") != null) {
-
     document.getElementById("registerButton").style.display = "none"
     document.getElementById("loginButton").style.display = "none"
-    document.getElementById("greetLabel").style.display = "inline"
-    document.getElementById("logoutButton").style.display = "inline"
+    document.getElementById("myAccountButton").style.display = "inline"
 
-    const userId = localStorage.getItem("user")
-    const user = await getUserByUserId(userId)
-    
-    document.getElementById("greetLabel").innerHTML = "Hi " + user[0].userName
-
+    document.getElementById("guestLink").style.display = "none"
+    document.getElementById("renterLink").style.display = "flex"
+    document.getElementById("ownerLink").style.display = "flex"
 }
 
 document.getElementById("registerButton").addEventListener("click", () => {
@@ -50,31 +52,3 @@ document.getElementById("loginButton").addEventListener("click", () => {
     document.getElementById('background').style.display = 'block'
     document.getElementById('login').style.display = 'flex'
 })
-
-document.getElementById("background").addEventListener("click", () => {
-    document.getElementById("background").style.display = 'none'
-    document.getElementById("register").style.display = 'none'
-    document.getElementById("login").style.display = 'none'
-
-    document.getElementById('registerUsernameInput').value = ''
-    document.getElementById('registerPasswordInput').value = ''
-    document.getElementById('confirmPasswordInput').value = ''
-    document.getElementById('registerStatusLabel').innerHTML = ''
-
-    document.getElementById('loginUsernameInput').value = ''
-    document.getElementById('loginPasswordInput').value = ''
-})
-
-document.getElementById("logoutButton").addEventListener("click", () => {
-    localStorage.removeItem("user")
-    window.location.reload()
-})
-
-window.onscroll = () => {
-    const nav = document.getElementById('nav');
-    if ( window.pageYOffset > 0 ) {
-        nav.classList.add("backgroundWhite");
-    } else {
-        nav.classList.remove("backgroundWhite");
-    }
-}

@@ -1,0 +1,61 @@
+
+
+#searchDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searchBox {
+    /* background-color: black; */
+    position: relative;
+}
+
+.searchBox > img {
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+}
+
+.searchBox > input {
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+
+    padding: 0.6rem;
+    padding-left: 2rem;
+    outline: none;
+    border-radius: 0.5rem;
+    border: 2px grey solid;
+
+    width: 10rem;
+}
+
+.searchBox > select {
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+    outline: none;
+
+    padding: 0.6rem;
+    padding-left: 2rem;
+    border-radius: 0.5rem;
+    border: 2px grey solid;
+    width: 10rem;
+}
+
+#findCourtButton {
+    background-color: #165CD9;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
