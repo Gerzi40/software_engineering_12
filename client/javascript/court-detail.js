@@ -1,4 +1,4 @@
-import { getCourtByCourtId, getScheduleTypeIdsFromScheduleByCourtIdAndDate, getScheduleTypes, getUserByUserId, insertSchedule } from "./module.js"
+import { getCourtByCourtId, getScheduleByCourtIdAndDate, getScheduleTypes, getUserByUserId, insertSchedule } from "./module.js"
 
 const dateInput = document.getElementById("dateInput")
 const scheduleDiv = document.getElementById('scheduleDiv')
@@ -53,12 +53,6 @@ document.getElementById("bookButton").addEventListener("click", async () => {
         document.getElementById('login').style.display = 'flex'
     }
 
-    const user = await getUserByUserId(userId)
-
-    if(user[0].userRole != "renter") {
-        window.location.href = "./index.html"
-    }
-
     const courtId = getParam('court-id');
     const date = dateInput.value
 
@@ -77,16 +71,17 @@ const fillScheduleDiv = async (date) => {
     const courtId = getParam("court-id")
 
     const scheduleTypes = await getScheduleTypes()
-    let scheduleTypeIds = await getScheduleTypeIdsFromScheduleByCourtIdAndDate(courtId, date)
+    let scheduleTypeIds = await getScheduleByCourtIdAndDate(courtId, date)
     scheduleTypeIds = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
+    
+    const currentDate = new Date()
+    const currentTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`
     
     scheduleDiv.innerHTML = ""
 
     // value checkbox merupakan scheduletypeid
     scheduleTypes.forEach((scheduleType, index) => {
 
-        const currentDate = new Date()
-        const currentTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`
 
         // gada di table schedule ato uda melewati waktu
         if(scheduleTypeIds.indexOf(index + 1) == -1 && (currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA'))) {
@@ -96,9 +91,17 @@ const fillScheduleDiv = async (date) => {
             checkBox.type = 'checkbox'
             checkBox.id = `checkBox${index + 1}`
             checkBox.value = index + 1
-            checkBox.addEventListener('change', () => {
+            checkBox.addEventListener('change', async() => {
+
                 let checkBoxs = document.querySelectorAll('input[type="checkbox"]:checked');
-                document.getElementById("totalPrice").innerHTML = checkBoxs.length
+                const amount = checkBoxs.length
+                const court = await getCourtByCourtId(courtId)
+                const totalCourtPriceInInt = parseInt(court[0].courtPrice, 10) * amount;
+                let totalCourtPriceInString = (totalCourtPriceInInt / 1000).toLocaleString('id-ID', {
+                    minimumFractionDigits: 3,
+                    maximumFractionDigits: 3
+                  }).replace(',', '.')
+                document.getElementById("totalPrice").innerHTML = `Rp ${totalCourtPriceInString}`
             })
 
             const label = document.createElement("label")
