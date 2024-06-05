@@ -87,8 +87,9 @@ const fillScheduleDiv = async (date) => {
     const courtId = getParam("court-id")
 
     const scheduleTypes = await getScheduleTypes()
-    const scheduleTypeIds = await getScheduleTypeIdsFromScheduleByCourtIdAndDate(courtId, date)
-
+    let scheduleTypeIds = await getScheduleTypeIdsFromScheduleByCourtIdAndDate(courtId, date)
+    scheduleTypeIds = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
+    
     scheduleDiv.innerHTML = ""
 
     // value checkbox merupakan scheduletypeid

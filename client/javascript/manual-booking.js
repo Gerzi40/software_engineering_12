@@ -68,6 +68,8 @@ const fillScheduleDiv = async (date) => {
     const scheduleTypes = await getScheduleTypes()
     const scheduleTypeIds = await getScheduleTypeIdsFromScheduleByCourtIdAndDate(courtId, date)
     
+    console.log(scheduleTypeIds)
+
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -89,16 +91,20 @@ const fillScheduleDiv = async (date) => {
         button.id = `button${index + 1}`
         button.textContent = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
         
-        button.addEventListener('click', () => {
+        button.addEventListener('click', async () => {
             // console.log("hello")
             const clickedButtonId = extractNumbersFromString(button.id);
             // Loop through each schedule
             let booked = false;
 
             // Loop through each schedule
-            for (const schedule of Schedule) {
+            for (const schedule of scheduleTypeIds) {
+                console.log(index + 1)
+                console.log(schedule.scheduleTypeId)
+                console.log(dateFormat)
+                console.log(schedule.scheduleDate)
                 // Compare schedule date and schedule type ID with the clicked button ID and current date
-                if (clickedButtonId == schedule.scheduleTypeId && dateFormat == schedule.scheduleDate) {
+                if (index + 1 == schedule.scheduleTypeId && dateFormat == schedule.scheduleDate) {
                     infoAndBook.style.display = "none";
                     // console.log(1);
                     paragraf.textContent = `The Court is booked by ${schedule.renterId}`;
@@ -109,7 +115,7 @@ const fillScheduleDiv = async (date) => {
             // If not booked, set paragraph text accordingly
             if (!booked) {
                 paragraf.textContent = "Manual Book Available";
-                manual_Book(clickedButtonId)
+                await manual_Book(scheduleType.scheduleTypeId)
             }
         });
         
@@ -123,30 +129,35 @@ const fillScheduleDiv = async (date) => {
 const manual_Book = async (clickedButtonId) => {
     // console.log(clickedButtonId)
     infoAndBook.style.display = "block";
-    infoAndBook.addEventListener('click', async (clickedButtonId) => {
-
-        const ownerId = localStorage.getItem("owner")
-
+    infoAndBook.addEventListener('click', async () => {
+    
+        const ownerId = localStorage.getItem("user")
+    
         if(ownerId == null) {
             window.location.href = "./index.html"
         }
-
+    
         const user = await getUserByUserId(ownerId)
-
-        if(user[0].userRole != "renter") {
+    
+        if(user[0].userRole != "owner") {
             window.location.href = "./index.html"
         }
-
+    
         const courtId = getParam('court-id');
         const date = dateInput.value
-
+    
         // let checkBoxs = document.querySelectorAll('input[type="checkbox"]:checked');
         // let checkBoxsValue = Array.from(checkBoxs).map(checkBox => checkBox.value);
-
+    
         // console.log(checkBoxsValue);
-
-        const res = await insertSchedule(courtId, TodayDate, clickedButtonId, ownerId)
+    
+        console.log(courtId)
+        console.log(date)
+        console.log(clickedButtonId)
+        console.log(ownerId)
+    
+        const res = await insertSchedule(courtId, date, [clickedButtonId], ownerId)
         console.log(res)
-        window.location.reload()
+        // window.location.reload()
     });
 }

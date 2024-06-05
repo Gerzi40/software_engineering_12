@@ -62,11 +62,12 @@ document.getElementById("insertButton").addEventListener("click", async () => {
     }
 })
 
-document.getElementById('downloadButton').addEventListener('click',() => {
-    console.log("X")
+function download() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
 
+    console.log(file)
+return
     if (!file) {
         alert('No file selected!');
         return;
@@ -89,4 +90,4 @@ document.getElementById('downloadButton').addEventListener('click',() => {
     };
 
     reader.readAsArrayBuffer(file);
-})
+}

@@ -76,10 +76,7 @@ export const getCourtTypes = async () => {
 export const getScheduleTypeIdsFromScheduleByCourtIdAndDate = async (courtId, date) => {
     const res = await fetch(`http://localhost:5000/schedule/court-id/${courtId}/date/${date}`)
     const data = await res.json()
-    const scheduleTypeIds = data.map(schedule => {
-        return schedule.scheduleTypeId
-    })
-    return scheduleTypeIds
+    return data
 }
 
 export const getScheduleByRenterId = async (renterId) => {
