@@ -22,7 +22,7 @@ document.getElementById("nav").innerHTML = `
     </div>
     <div id="ownerLink">
         <a href="my-court.html">My Court</a>
-        <a href="manual-booking.html">Manual Booking</a>
+        <a href="insert-court.html">Insert Court</a>
         <a href="about.html">About</a>
     </div>
 
