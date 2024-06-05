@@ -27,6 +27,9 @@ window.onload = async () => {
         const name = urlParams.get('name')
         const category = urlParams.get('category')
         const location = urlParams.get('location')
+        document.getElementById('nameInput').value = name ?  name : ''
+        document.getElementById('categorySelect').value = category ?  category : ''
+        document.getElementById('locationSelect').value = location ?  location : ''
         const newCourts = await searchCourts(name, category, location)
         displayCourts(newCourts)
     }
@@ -56,7 +59,7 @@ document.getElementById('nameInput').addEventListener('keypress', async (event) 
     if(query == '') return
 
     if (event.key === 'Enter') {
-        const filteredCourts = searchCourts(query);
+        const filteredCourts = await searchCourts(query, '', '');
         displayCourts(filteredCourts);
     }
 });
