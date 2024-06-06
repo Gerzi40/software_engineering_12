@@ -30,8 +30,7 @@ document.getElementById("insertButton").addEventListener("click", async () => {
     const address = document.getElementById("addressInput").value
     const type = document.getElementById("typeDdl").value
     const price = document.getElementById("priceInput").value
-    // const image = document.getElementById("imageInput").value
-    const image = "abc"
+    const image = document.getElementById("fileInput").files[0]
 
     if(name == "") {
         document.getElementById("statusLabel").innerHTML = "Name must be filled"
@@ -48,25 +47,25 @@ document.getElementById("insertButton").addEventListener("click", async () => {
     } else if(isNaN(parseInt(price))) {
         document.getElementById("statusLabel").innerHTML = "Price must be a number"
         return
-    } else if(image == "") {
+    } else if(document.getElementById('fileInput').files[0] == undefined) {
         document.getElementById("statusLabel").innerHTML = "Image must be filled"
         return
     }
 
+    const imageName = './asset/court_image/' + download()
+
     const userId = localStorage.getItem("user")
 
-    const res = await insertCourt(userId, name, address, type, price, image)
+    const res = await insertCourt(userId, name, address, type, price, imageName)
     if(res.message == "Insert Court Success") {
-        window.location.href = "my-court.html"
+        // window.location.href = "my-court.html"
     }
 })
 
 function download() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-
-    console.log(file)
-return
+    
     if (!file) {
         alert('No file selected!');
         return;
@@ -89,4 +88,5 @@ return
     };
 
     reader.readAsArrayBuffer(file);
+    return file.name
 }

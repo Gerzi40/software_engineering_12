@@ -21,6 +21,8 @@ window.onload = async () => {
         const br = document.createElement('br')
         const div = document.createElement('div')
 
+        const img = document.createElement('img')
+        img.src = court.courtImage
         const name = document.createElement('p')
         name.innerHTML = `name: ${court.courtName}`
         const rating = document.createElement('p')
@@ -43,6 +45,7 @@ window.onload = async () => {
             }
         })
 
+        div.appendChild(img)
         div.appendChild(name)
         div.appendChild(rating)
         div.appendChild(update)

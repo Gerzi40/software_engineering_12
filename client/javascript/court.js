@@ -44,10 +44,19 @@ const displayCourts = (courtsToDisplay) => {
     courtsToDisplay.forEach(court => {
 
         const div = document.createElement('div')
-        div.innerHTML = court.courtName
+
+        const img = document.createElement('img')
+        img.src = court.courtImage
+        const p = document.createElement('p')
+        p.innerHTML = court.courtName
+
         div.addEventListener('click', () => {
             window.location.href = `court-detail.html?court-id=${court.courtId}`
         })
+
+        div.appendChild(img)
+        div.appendChild(p)
+
         courtListDiv.appendChild(div)
 
     });
