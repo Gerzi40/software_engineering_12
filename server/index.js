@@ -262,4 +262,30 @@ app.post("/login", (req, res) => {
     })
 })
 
+app.put("/user", (req, res) => {
+    const username = req.body.userName
+    const password = req.body.userPassword
+    const id = req.body.userId
+
+    db.query("SELECT * FROM user WHERE userName = ?", [username], (err, result) => {
+        if(err){
+            res.send({message: err});
+        } else {
+            if(result.length > 0 && result[0].userId != id){
+                res.send({message: "Username already taken"})
+            } else {
+                db.query("UPDATE user SET userName = ?, userPassword = ? WHERE userId = ?", [username, password, id], (err, result) => {
+                    if(err){
+                        res.send({message: err})
+                    } else {
+                        res.send({message: "Update Success"})
+                    }
+                })
+            }
+        }
+    })
+})
+
+
+
 app.listen(5000, () => {console.log("Running...")})

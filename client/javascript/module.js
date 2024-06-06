@@ -165,3 +165,20 @@ export const login = async (name, password) => {
     const data = await res.json()
     return data
 }
+
+export const updateUser = async (id, name, password) => {
+    const res = await fetch(`http://localhost:5000/user`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: id,
+            userName: name,
+            userPassword: password
+        })
+    })
+    const data = await res.json()
+    return data
+}
