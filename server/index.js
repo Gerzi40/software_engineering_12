@@ -98,6 +98,18 @@ app.put("/court", (req, res) => {
     })
 })
 
+app.delete("/court/:courtId", (req, res) => {
+    const courtId = req.params.courtId
+    
+    db.query(`DELETE FROM court WHERE courtId = ?`, [courtId], (err, result) => {
+        if(err){
+            res.send({message: err})
+        } else {
+            res.send({ message: 'Delete Court Success' })
+        }
+    })
+})
+
 /* COURT TYPE */
 app.get("/court-types", (req, res) => {
     const courtId = req.params.courtId

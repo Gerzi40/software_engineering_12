@@ -67,6 +67,18 @@ export const updateCourt = async (id, name, address, typeId, price, image) => {
     return data
 }
 
+export const deleteCourt = async (id) => {
+    const res = await fetch(`http://localhost:5000/court/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    const data = await res.json()
+    return data
+}
+
 export const getCourtTypes = async () => {
     const res = await fetch("http://localhost:5000/court-types")
     const data = await res.json()

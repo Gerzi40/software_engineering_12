@@ -1,4 +1,4 @@
-import { getCourtsByOwnerId, getUserByUserId } from "./module.js"
+import { deleteCourt, getCourtsByOwnerId, getUserByUserId } from "./module.js"
 
 window.onload = async () => {
 
@@ -17,15 +17,40 @@ window.onload = async () => {
     const courts = await getCourtsByOwnerId(userId)
 
     courts.forEach(court => {
-        document.getElementById("courtListDiv").innerHTML += `
-            <br/>
-            <div>
-                <p>name: ${court.courtName}</p>
-                <p>rating: ${court.courtRating}</p>
-                <a href="update-court.html?court-id=${court.courtId}">Update</a>
-                <a href="manual-booking.html?court-id=${court.courtId}">Manual Booking</a>
-            </div>
-        `
+
+        const br = document.createElement('br')
+        const div = document.createElement('div')
+
+        const name = document.createElement('p')
+        name.innerHTML = `name: ${court.courtName}`
+        const rating = document.createElement('p')
+        rating.innerHTML = `rating: ${court.courtRating}`
+
+        const update = document.createElement('a')
+        update.href = `update-court.html?court-id=${court.courtId}`
+        update.innerHTML = 'Update'
+        const manual = document.createElement('a')
+        manual.href = `manual-booking.html?court-id=${court.courtId}`
+        manual.innerHTML = 'Manual Booking'
+        const button = document.createElement('button')
+        button.textContent = 'Delete'
+        button.addEventListener('click', async () => {
+            const res = await deleteCourt(court.courtId)
+            if(res.message == 'Delete Court Success'){
+                window.location.reload()
+            } else  {
+                alert("Ada reference di tabel lain")
+            }
+        })
+
+        div.appendChild(name)
+        div.appendChild(rating)
+        div.appendChild(update)
+        div.appendChild(manual)
+        div.appendChild(button)
+
+        document.getElementById("courtListDiv").appendChild(br)
+        document.getElementById("courtListDiv").appendChild(div)
     });
 
 }

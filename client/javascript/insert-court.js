@@ -30,7 +30,8 @@ document.getElementById("insertButton").addEventListener("click", async () => {
     const address = document.getElementById("addressInput").value
     const type = document.getElementById("typeDdl").value
     const price = document.getElementById("priceInput").value
-    const image = document.getElementById("imageInput").value
+    // const image = document.getElementById("imageInput").value
+    const image = "abc"
 
     if(name == "") {
         document.getElementById("statusLabel").innerHTML = "Name must be filled"
