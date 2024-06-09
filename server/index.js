@@ -149,7 +149,7 @@ app.get("/schedule/court-id/:courtId/date/:date", (req, res) => {
 app.get("/schedule/renter-id/:renterId", (req, res) => {
     const renterId = req.params.renterId
     
-    db.query("SELECT * FROM schedule JOIN court ON schedule.courtId = court.courtId JOIN schedule_type ON schedule.scheduleTypeId = schedule_type.scheduleTypeId WHERE renterId = ?", [renterId], (err, result) => {
+    db.query("SELECT * FROM schedule JOIN court ON schedule.courtId = court.courtId JOIN schedule_type ON schedule.scheduleTypeId = schedule_type.scheduleTypeId JOIN court_type ON court.courtTypeId = court_type.courtTypeId WHERE renterId = ?", [renterId], (err, result) => {
         if(err){
             res.send({message: err})
         } else {

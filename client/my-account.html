@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="./component/background/background.css">
     <link rel="stylesheet" href="./component/register/register.css">
     <link rel="stylesheet" href="./component/login/login.css">
+
+    <link rel="stylesheet" href="./css/my-account.css">
+
 </head>
 <body>
     
@@ -18,29 +21,62 @@
     <div id="register" class="form"></div>
     <div id="login" class="form"></div>
 
-    <div class="min-height-100vh">
-        <h1>My Account</h1>
+    
+    <div class="min-height-100vh" id="my-account-body">
+        <div id="sub-navbar">
+            <div id="profileButton" class="blue-text">➤ Profile</div>
+            <div id="bookingSummaryButton">➤ Booking Summary</div>
+            <div id="bookingHistoryButton">➤ Booking History</div>
+            <div id="insertCourtButton">➤ Register Court</div>
+            <div id="updateCourtButton">➤ Edit Court</div>
+        </div>
+        <div id="profileDiv">
+            <h1>My Account</h1>
 
-        <div>
-            Username
-            <input id="usernameInput" />
+            <div>
+                Username
+                <input id="usernameInput" />
+            </div>
+            <div>
+                Password
+                <input id="passwordInput" type="password" />
+            </div>
+            <div>
+                <button id="updateButton">Update Profile</button>
+            </div>
+            <div>
+                <label id="updateStatusLabel"></label>
+            </div>
+    
+            <br/>
+    
+            <button id="switchToRenter">Switch to Renter</button>
+            <button id="switchToOwner">Switch to Owner</button>
+            <button id="logoutButton">Logout</button>
         </div>
-        <div>
-            Password
-            <input id="passwordInput" type="password" />
+        <div id="bookingSummaryDiv">
+            booking summary
+            <table id="bookingSummaryTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </table>
         </div>
-        <div>
-            <button id="updateButton">Update Profile</button>
+        <div id="bookingHistoryDiv">
+            booking history
         </div>
-        <div>
-            <label id="updateStatusLabel"></label>
+        <div id="insertCourtDiv">
+            insert court
         </div>
-
-        <br/>
-
-        <button id="switchToRenter">Switch to Renter</button>
-        <button id="switchToOwner">Switch to Owner</button>
-        <button id="logoutButton">Logout</button>
+        <div id="updateCourtDiv">
+            update court
+        </div>
     </div>
 
     <footer id="footer"></footer>
