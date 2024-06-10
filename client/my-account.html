@@ -72,7 +72,36 @@
             booking history
         </div>
         <div id="insertCourtDiv">
-            insert court
+            <h1>Insert Court</h1>
+
+            <div>
+                Court Name
+                <input id="nameInsertInput" />
+            </div>
+            <div>
+                Court Address
+                <input id="addressInsertInput" />
+            </div>
+            <div>
+                Court Type
+                <select id="typeInsertDdl">
+                    <option value="" hidden></option>
+                </select>
+            </div>
+            <div>
+                Court Price
+                <input id="priceInsertInput" />
+            </div>
+            <div>
+                Court Image
+                <input type="file" id="fileInsertInput">
+            </div>
+            <div>
+                <a id="insertButton" download>Insert</a>
+            </div>
+            <div>
+                <label id="statusInsertLabel"></label>
+            </div>
         </div>
         <div id="updateCourtDiv">
             update court

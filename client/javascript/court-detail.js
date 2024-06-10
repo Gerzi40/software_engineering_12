@@ -51,6 +51,7 @@ document.getElementById("bookButton").addEventListener("click", async () => {
     if(userId == null) {
         document.getElementById('background').style.display = 'block'
         document.getElementById('login').style.display = 'flex'
+        return
     }
 
     const courtId = getParam('court-id');

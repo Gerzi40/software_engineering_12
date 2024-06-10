@@ -1,28 +1,4 @@
-import { getCourtTypes, getUserByUserId, insertCourt } from "./module.js"
-
-window.onload = async () => {
-
-    if(localStorage.getItem("user") == null) {
-        document.getElementById('background').style.display = 'block'
-        document.getElementById('login').style.display = 'flex'
-        return
-    }
-
-    if(localStorage.getItem('user-role') != 'owner') {
-        window.location.href = "./index.html"
-    }
-
-    const courtTypes = await getCourtTypes()
-    
-    courtTypes.forEach(courtType => {
-        document.getElementById("typeDdl").innerHTML += `
-            <option value=${courtType.courtTypeId}>
-                ${courtType.courtTypeName}
-            </option>
-        `
-    });
-
-}
+import { insertCourt } from "./module.js"
 
 document.getElementById("insertButton").addEventListener("click", async () => {
 
