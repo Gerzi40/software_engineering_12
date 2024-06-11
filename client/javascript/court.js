@@ -33,12 +33,6 @@ window.onload = async () => {
         const newCourts = await searchCourts(name, category, location)
         displayCourts(newCourts)
     }
-
-<<<<<<< HEAD
-=======
-    
->>>>>>> 0e1075ee660ca7157932ea9c4bdf75b8437a2942
-
 };
 
 const displayCourts = (courtsToDisplay) => {
