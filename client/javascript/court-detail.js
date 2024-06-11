@@ -63,6 +63,13 @@ const fillDateDiv = () => {
 
 window.onload = async () => {
 
+    if(localStorage.getItem('user') != null && localStorage.getItem('user-role') != 'renter') {
+        document.getElementById('bookButton').disabled = true
+        document.getElementById('bookButton').style.backgroundColor = '#EBECEE'
+        document.getElementById('bookButton').style.color = '#C0C1C6'
+        document.getElementById('bookButton').style.cursor = 'default'
+    }
+
     const courtId = getParam('court-id');
 
     if(courtId == "" || courtId == undefined) {

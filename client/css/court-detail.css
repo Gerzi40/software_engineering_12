@@ -162,6 +162,8 @@ input[type="checkbox"]:checked + label {
     font-weight: 700;
     border-radius: 1rem;
     cursor: pointer;
+    outline: none;
+    border: none;
 }
 
 #totalPriceText, #totalPrice {
