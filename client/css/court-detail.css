@@ -1,29 +1,189 @@
-#scheduleDiv > div {
-    padding: 1rem;
-    border-radius: 1rem;
+#courtNameDiv {
+    text-align: center;
+    margin-bottom: 5rem;
 }
 
+#courtNameDiv > label {
+    background-color: #165CD9;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+#imageDiv {
+    padding: 0 5rem;
+}
+
+#imageDiv > img {
+    width: 100%;
+}
+
+
+
+
+
+
+#formTitle {
+    color: #165CD9;
+    margin-left: 5rem;
+}
+
+.grey-line {
+    padding: 0 5rem;
+}
+
+.grey-line > div {
+    height: 0.1rem;
+    background-color: #EDEDED;
+}
+
+.sub-form {
+    margin: 0 5rem;
+}
+
+.sub-form > h1 {
+    margin: 0;
+}
 
 #dateDiv {
-    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    margin: 1rem 0;
 }
 
-#dateDiv > input {
+#dateDiv > input[type="radio"] {
     display: none;
 }
 
-#dateDiv > label {
-    display: block;
-    text-align: center;
-    width: 10rem;
+#dateDiv > input[type="radio"] + label {
+    width: 9rem;
+    height: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     border: 1px solid #9C9C9C;
     border-radius: 1rem;
-    margin: 0.5rem;
+    cursor: pointer;
+
+    /* padding: 0.5rem 0; */
 }
 
-input[type="radio"]:checked + label {
+#dateDiv > input[type="radio"]:checked + label {
     background-color: #165CD9;
     color: #fff;
     border: 1px solid #165CD9;
+}
+
+#scheduleDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.disabledLabel {
+    width: 9rem;
+    height: 4rem;
+    font-weight: 700;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #EBECEE;
+    border-radius: 1rem;
+    background-color: #EBECEE;
+    color: #C0C1C6;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    width: 9rem;
+    height: 4rem;
+    font-weight: 700;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #9C9C9C;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #165CD9;
+    border: 1px solid #165CD9;
+    color: #fff;
+}
+
+#priceAndBook {
+    display: flex;
+    align-items: center;
+    background-color: #F8F8F8;
+    border-radius: 1rem;
+    margin: 2rem 5rem;
+}
+
+#priceAndBook > div {
+    height: 10rem;
+}
+
+#priceAndBook > div:nth-child(1) {
+    width: calc(50% - 0.05rem);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#priceAndBook > div:nth-child(2) {
+    width: 0.1rem;
+    height: 8rem;
+    background-color: #9C9C9C;
+}
+#priceAndBook > div:nth-child(3) {
+    width: calc(50% - 0.05rem);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bookButton {
+    background-color: #165CD9;
+    padding: 0.75rem 2rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+#totalPriceText, #totalPrice {
+    margin: 0.5rem;
+}
+
+#totalPriceText {
+    color: #9C9C9C;
+}
+
+#totalPrice {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #165CD9;
 }

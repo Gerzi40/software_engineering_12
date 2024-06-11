@@ -1,0 +1,35 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-container div {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.grid-container div:hover {
+    transform: scale(1.05);
+}
+
+.grid-container img {
+    width: 100%;
+    height: 80%;
+    display: block;
+    object-fit: cover;
+}
+
+.grid-container p {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+}

@@ -1,6 +1,5 @@
 import { getCourtByCourtId, getScheduleByCourtIdAndDate, getScheduleTypes, getUserByUserId, insertSchedule } from "./module.js"
 
-const dateInput = document.getElementById("dateInput")
 const scheduleDiv = document.getElementById('scheduleDiv')
 
 const getParam = (parameterName) => {
@@ -15,15 +14,14 @@ const dateDiv = document.getElementById('dateDiv')
 const fillDateDiv = () => {
 
     
-    for(let i=0; i<7; i++) {
+    for(let i=0; i<6; i++) {
         let currentDate = new Date()
         // console.log(currentDate)
         currentDate.setDate(currentDate.getDate() + i)
 
         const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
-        const formattedCurrentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
-
+        const formattedCurrentDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate()}`
 
         let dayOfWeek = currentDate.toLocaleString('default', { weekday: 'long' }); // Short day name (e.g., "Tue")
         let month = currentDate.toLocaleString('default', { month: 'short' }); // Short month name (e.g., "Jun")
@@ -42,14 +40,17 @@ const fillDateDiv = () => {
         radio.name = 'date'
         radio.checked = i == 0
         radio.addEventListener('change', (event) => {
-            console.log(event.target.value)
+
+            const dateee = event.target.value
+            fillScheduleDiv(dateee)
+
         })
 
         const label = document.createElement('label')
         label.innerHTML = `
             ${date} ${month}
             <br/>
-            ${dayOfWeek}
+            <b>${dayOfWeek}</b>
         `
         label.htmlFor = 'radio' + i + 1
 
@@ -66,8 +67,13 @@ window.onload = async () => {
 
     const court = await getCourtByCourtId(courtId)
     document.getElementById("courtDetailDiv").innerHTML = `
+        <div id="courtNameDiv">
+            <label>${court[0].courtName}</label>
+        </div>
+        <div id="imageDiv">
+            <img src="${court[0].courtImage}" />
+        </div<
         <div>court id: ${court[0].courtId}</div>
-        <div>name: ${court[0].courtName}</div>
         <div>address: ${court[0].courtAddress}</div>
         <div>type: ${court[0].courtTypeName}</div>
         <div>price: ${court[0].courtPrice}</div>
@@ -80,21 +86,10 @@ window.onload = async () => {
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();
     const date = today.toISOString().split('T')[0];
-    dateInput.min = date;
-    dateInput.value = date;
 
     fillScheduleDiv(date)
 
 }
-
-document.getElementById("dateInput").addEventListener("change", async () => {
-
-    const courtId = getParam('court-id');
-    const date = dateInput.value
-    
-    fillScheduleDiv(date)
-
-})
 
 document.getElementById("bookButton").addEventListener("click", async () => {
 
@@ -107,7 +102,9 @@ document.getElementById("bookButton").addEventListener("click", async () => {
     }
 
     const courtId = getParam('court-id');
-    const date = dateInput.value
+
+    const date = document.querySelector('input[name="date"]:checked').value;
+    // console.log(selectedOption)
 
     let checkBoxs = document.querySelectorAll('input[type="checkbox"]:checked');
     let checkBoxsValue = Array.from(checkBoxs).map(checkBox => checkBox.value);
@@ -170,6 +167,7 @@ const fillScheduleDiv = async (date) => {
 
             const div = document.createElement("div")
             const label = document.createElement("label")
+            label.className = 'disabledLabel'
             label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
 
             div.appendChild(label)

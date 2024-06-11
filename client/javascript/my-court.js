@@ -18,7 +18,6 @@ window.onload = async () => {
 
     courts.forEach(court => {
 
-        const br = document.createElement('br')
         const div = document.createElement('div')
 
         const img = document.createElement('img')
@@ -47,12 +46,11 @@ window.onload = async () => {
 
         div.appendChild(img)
         div.appendChild(name)
-        div.appendChild(rating)
+        // div.appendChild(rating)
         div.appendChild(update)
         div.appendChild(manual)
         div.appendChild(button)
 
-        document.getElementById("courtListDiv").appendChild(br)
         document.getElementById("courtListDiv").appendChild(div)
     });
 

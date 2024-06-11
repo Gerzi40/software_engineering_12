@@ -1,4 +1,18 @@
-import { insertCourt } from "./module.js"
+import { getCourtTypes, insertCourt } from "./module.js"
+
+window.onload = async () => {
+
+    const courtTypes = await getCourtTypes()
+    courtTypes.forEach(courtType => {
+
+        const option = document.createElement('option')
+        option.innerHTML = courtType.courtTypeName
+        option.value = courtType.courtTypeName
+
+        document.getElementById('typeDdl').appendChild(option)
+    });
+
+}
 
 document.getElementById("insertButton").addEventListener("click", async () => {
 
