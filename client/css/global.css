@@ -10,5 +10,12 @@ body {
 
 .min-height-100vh {
     min-height: calc(100vh - 3rem);
-    margin-top: 3rem;
+    margin: 5rem;
+}
+
+.page-title {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+    width: fit-content;
 }

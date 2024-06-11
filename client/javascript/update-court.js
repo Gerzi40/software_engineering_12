@@ -68,12 +68,44 @@ document.getElementById("updateButton").addEventListener("click", async () => {
     } else if(isNaN(parseInt(price))) {
         document.getElementById("statusLabel").innerHTML = "Price must be a number"
         return
-    } else if(image == "") {
+    } else if(document.getElementById('fileInput').files[0] == undefined) {
         document.getElementById("statusLabel").innerHTML = "Image must be filled"
         return
     }
 
-    const res = await updateCourt(courtId, name, address, type, price, image)
+    const imageName = './asset/court_image/' + download()
+
+
+    const res = await updateCourt(courtId, name, address, type, price, imageName)
     console.log(res)
     window.location.href = "./my-court.html"
 })
+
+function download() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('No file selected!');
+        return;
+    }
+
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+        const fileContents = event.target.result;
+        const blob = new Blob([fileContents], { type: file.type });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
+    reader.readAsArrayBuffer(file);
+    return file.name
+}

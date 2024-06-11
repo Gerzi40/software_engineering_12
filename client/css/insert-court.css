@@ -1,0 +1,59 @@
+.inputDiv {
+    margin-bottom: 1rem;
+}
+
+.inputDiv > input {
+    width: calc(100% - 2px - 1rem);
+    padding: 0.5rem;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+.inputDiv > select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+#fileInput {
+    display: none;
+}
+
+#fileInputLabel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 12rem;
+    height: 8rem;
+    
+    border: 1px solid grey;
+    border-radius: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.material-symbols-outlined {
+    color: #9C9C9C;
+}
+
+#fileInputLabel > span:nth-child(2) {
+    color: #9C9C9C;
+    font-size: 0.8rem;
+}
+
+#fileInputLabel > span:nth-child(3) {
+    font-size: 0.8rem;
+    color: blue;
+}
+
+#insertButton {
+    background-color: #165CD9;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 1rem;
+}

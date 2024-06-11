@@ -1,0 +1,41 @@
+#bookingTable {
+    width: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 2px grey;
+}
+
+#bookingTable tr {
+    width: 100%;
+    /* background-color: black; */
+}
+
+#bookingTable th, #bookingTable td {
+    width: calc(100%/6);
+    text-align: center;
+}
+
+#bookingTable td {
+    padding: 0.5rem 1rem;
+}
+
+
+.page-title {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+    width: fit-content;
+}
+
+/* .page-title {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.page-title > label {
+    background-color: #165CD9;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+} */
