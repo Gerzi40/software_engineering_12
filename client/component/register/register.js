@@ -18,6 +18,14 @@ document.getElementById("register").innerHTML = `
             <p>Confirm Password</p>
             <input id="confirmPasswordInput" type="password" />
         </div>
+        <div>
+            <p>Role</p>
+            <select id="roleDdl">
+                <option value="" hidden></option>
+                <option value="renter">Renter</option>
+                <option value="owner">Owner</option>
+            </select>
+        </div>
         <button class="submitButton" id="registerSubmitButton">Register</button>
         <label id="registerStatusLabel"></label>
     </div>
@@ -46,15 +54,30 @@ document.getElementById("registerSubmitButton").addEventListener("click", async 
     const name = document.getElementById("registerUsernameInput").value
     const password = document.getElementById("registerPasswordInput").value
     const confirmPassword = document.getElementById("confirmPasswordInput").value
-
+    const role = document.getElementById('roleDdl').value
+    
     const statusLabel = document.getElementById("registerStatusLabel")
-    if (name.length < 5) {
+
+    if(name == "") {
+        statusLabel.innerHTML = "Name must be filled"
+    } else if(password == "") {
+        statusLabel.innerHTML = "Password must be filled"
+    } else if(confirmPassword == "") {
+        statusLabel.innerHTML = "Confirm Password must be filled"
+    } else if (role == "") {
+        console.log(role)
+        statusLabel.innerHTML = "Role must be choosed"
+    } else if (name.length < 5) {
+        console.log(2)
         statusLabel.innerHTML = "Name must be atleast 5 character"
     } else if (validatePassword(password)) {
         statusLabel.innerHTML = "Password must be atleast 8 character, 1 symbol, 1 number, and 1 upper case"
     } else if (password != confirmPassword) {
         statusLabel.innerHTML = "Password and Confirm Password must match"
     } else {
+
+        statusLabel.innerHTML = ""
+        
         const res = await insertUser(name, password, '')
         console.log(res)
         if(res.message == "Username already taken") {

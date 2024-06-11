@@ -12,6 +12,7 @@ document.getElementById("background").addEventListener("click", () => {
     document.getElementById('registerUsernameInput').value = ''
     document.getElementById('registerPasswordInput').value = ''
     document.getElementById('confirmPasswordInput').value = ''
+    document.getElementById('roleDdl').value = ''
     document.getElementById('registerStatusLabel').innerHTML = ''
 
     document.getElementById('loginUsernameInput').value = ''
