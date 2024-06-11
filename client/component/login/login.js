@@ -2,7 +2,7 @@ import { login } from "../../javascript/module.js"
 
 document.getElementById("login").innerHTML = `
     <div class="imageDiv">
-        <img src="./asset/court.png" />
+        <img src="./asset/login_register/court.png" />
     </div>
     <div class="formDiv">
         <h1>Sign In</h1>
