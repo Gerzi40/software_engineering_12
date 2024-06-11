@@ -11,10 +11,6 @@
     padding: 1rem;
 }
 
-#imageDiv {
-    /* padding: 0 5rem; */
-}
-
 #imageDiv > img {
     width: 100%;
 }
