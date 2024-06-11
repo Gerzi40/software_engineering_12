@@ -59,7 +59,7 @@ document.getElementById("updateButton").addEventListener("click", async () => {
     const address = document.getElementById("addressInput").value
     const type = document.getElementById("typeDdl").value
     const price = document.getElementById("priceInput").value
-    const image = document.getElementById("imageInput").value
+    // const image = document.getElementById("imageInput").value
 
     // console.log(name)
     // console.log(address)
@@ -79,12 +79,16 @@ document.getElementById("updateButton").addEventListener("click", async () => {
     } else if(isNaN(parseInt(price))) {
         document.getElementById("statusLabel").innerHTML = "Price must be a number"
         return
-    } else if(document.getElementById('fileInput').files[0] == undefined) {
-        document.getElementById("statusLabel").innerHTML = "Image must be filled"
-        return
-    }
+    } 
+    
 
-    const imageName = './asset/court_image/' + download()
+    let imageName = ""
+    if(document.getElementById('fileInput').files[0] != undefined) {
+        imageName = './asset/court_image/' + download()
+    } else {
+        const court = await getCourtByCourtId(getParam('court-id'))
+        imageName = court[0].courtImage
+    }
 
 
     const res = await updateCourt(courtId, name, address, type, price, imageName)

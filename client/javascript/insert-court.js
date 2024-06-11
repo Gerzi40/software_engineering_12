@@ -17,7 +17,7 @@ window.onload = async () => {
 
         const option = document.createElement('option')
         option.innerHTML = courtType.courtTypeName
-        option.value = courtType.courtTypeName
+        option.value = courtType.courtTypeId
 
         document.getElementById('typeDdl').appendChild(option)
     });
@@ -59,6 +59,7 @@ document.getElementById("insertButton").addEventListener("click", async () => {
     const res = await insertCourt(userId, name, address, type, price, imageName)
     if(res.message == "Insert Court Success") {
         // window.location.href = "my-court.html"
+        window.location.reload()
     }
 })
 
