@@ -67,13 +67,3 @@ document.getElementById("logoutButton").addEventListener('click', () => {
     localStorage.removeItem('user-role')
     window.location.href = 'index.html'
 })
-
-document.getElementById('switchToRenter').addEventListener('click', () => {
-    localStorage.setItem('user-role', 'renter')
-    window.location.reload()
-})
-
-document.getElementById('switchToOwner').addEventListener('click', () => {
-    localStorage.setItem('user-role', 'owner')
-    window.location.reload()
-})
