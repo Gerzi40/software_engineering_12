@@ -12,7 +12,7 @@
 }
 
 #imageDiv {
-    padding: 0 5rem;
+    /* padding: 0 5rem; */
 }
 
 #imageDiv > img {
@@ -26,21 +26,15 @@
 
 #formTitle {
     color: #165CD9;
-    margin-left: 5rem;
+    /* margin-left: 5rem; */
 }
 
 .grey-line {
-    padding: 0 5rem;
-}
-
-.grey-line > div {
     height: 0.1rem;
     background-color: #EDEDED;
 }
 
-.sub-form {
-    margin: 0 5rem;
-}
+
 
 .sub-form > h1 {
     margin: 0;
@@ -135,7 +129,7 @@ input[type="checkbox"]:checked + label {
     align-items: center;
     background-color: #F8F8F8;
     border-radius: 1rem;
-    margin: 2rem 5rem;
+    /* margin: 2rem 5rem; */
 }
 
 #priceAndBook > div {

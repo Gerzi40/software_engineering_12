@@ -67,9 +67,7 @@ window.onload = async () => {
 
     const court = await getCourtByCourtId(courtId)
     document.getElementById("courtDetailDiv").innerHTML = `
-        <div id="courtNameDiv">
-            <label>${court[0].courtName}</label>
-        </div>
+        <h1 class="page-title">${court[0].courtName}</h1>
         <div id="imageDiv">
             <img src="${court[0].courtImage}" />
         </div<
