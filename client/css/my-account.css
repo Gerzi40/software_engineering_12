@@ -1,0 +1,28 @@
+#my-account-body {
+    padding: 0 3rem;
+}
+
+#sub-navbar {
+    border: solid 1px #9C9C9C;
+    border-radius: 1rem;
+    width: fit-content;
+    padding: 1rem;
+    margin: 4rem 0 0 4rem;
+}
+
+#sub-navbar > div {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.blue-text {
+    color: #165CD9
+}
+
+#profileDiv {
+    display: block;
+}
+
+#bookingSummaryDiv, #bookingHistoryDiv, #insertCourtDiv, #updateCourtDiv {
+    display: none;
+}

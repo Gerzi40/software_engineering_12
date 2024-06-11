@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./component/navbar/navbar.css">
+    <link rel="stylesheet" href="./component/footer/footer.css">
+    <link rel="stylesheet" href="./component/background/background.css">
+    <link rel="stylesheet" href="./component/register/register.css">
+    <link rel="stylesheet" href="./component/login/login.css">
+</head>
+<body>
+    
+    <nav id="nav"></nav>
+    <div id="background"></div>
+    <div id="register" class="form"></div>
+    <div id="login" class="form"></div>
+
+    <div class="min-height-100vh">
+        <h1>Insert Court</h1>
+
+        <div>
+            Court Name
+            <input id="nameInput" />
+        </div>
+        <div>
+            Court Address
+            <input id="addressInput" />
+        </div>
+        <div>
+            Court Type
+            <select id="typeDdl">
+                <option value=""></option>
+            </select>
+        </div>
+        <div>
+            Court Price
+            <input id="priceInput" />
+        </div>
+        <div>
+            Court Image
+            <input type="file" id="fileInput">
+        </div>
+        <div>
+            <button id="insertButton">Insert</button>
+        </div>
+        <div>
+            <label id="statusLabel"></label>
+        </div>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script type="module" src="./component/navbar/navbar.js"></script>
+    <script type="module" src="./component/footer/footer.js"></script>
+    <script type="module" src="./component/register/register.js"></script>
+    <script type="module" src="./component/login/login.js"></script>
+    <script type="module" src="./component/background/background.js"></script>
+    <script type="module" src="./javascript/insert-court.js"></script>
+
+</body>
+</html>

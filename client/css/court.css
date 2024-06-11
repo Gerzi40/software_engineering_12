@@ -1,0 +1,97 @@
+
+
+#searchDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searchBox {
+    /* background-color: black; */
+    position: relative;
+}
+
+.searchBox > img {
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+}
+
+.searchBox > input {
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+
+    padding: 0.6rem;
+    padding-left: 2rem;
+    outline: none;
+    border-radius: 0.5rem;
+    border: 2px grey solid;
+
+    width: 10rem;
+}
+
+.searchBox > select {
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
+    outline: none;
+
+    padding: 0.6rem;
+    padding-left: 2rem;
+    border-radius: 0.5rem;
+    border: 2px grey solid;
+    width: 10rem;
+}
+
+#findCourtButton {
+    background-color: #165CD9;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-container div {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.grid-container div:hover {
+    transform: scale(1.05);
+}
+
+.grid-container img {
+    width: 100%;
+    height: 80%;
+    display: block;
+    object-fit: cover;
+}
+
+.grid-container p {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+}
