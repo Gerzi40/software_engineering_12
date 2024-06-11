@@ -10,6 +10,56 @@ const getParam = (parameterName) => {
     return params.get(parameterName);
 }
 
+const dateDiv = document.getElementById('dateDiv')
+
+const fillDateDiv = () => {
+
+    
+    for(let i=0; i<7; i++) {
+        let currentDate = new Date()
+        // console.log(currentDate)
+        currentDate.setDate(currentDate.getDate() + i)
+
+        const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+        const formattedCurrentDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+
+
+        let dayOfWeek = currentDate.toLocaleString('default', { weekday: 'long' }); // Short day name (e.g., "Tue")
+        let month = currentDate.toLocaleString('default', { month: 'short' }); // Short month name (e.g., "Jun")
+        let date = currentDate.getDate().toString().padStart(2, '0'); // Day of the month
+        let year = currentDate.getFullYear(); // Full year
+
+        // console.log(dayOfWeek)
+        // console.log(date)
+
+        // console.log(dateFromCurrentDate)
+
+        const radio = document.createElement('input')
+        radio.type = 'radio'
+        radio.id = 'radio' + i + 1
+        radio.value = formattedCurrentDate
+        radio.name = 'date'
+        radio.checked = i == 0
+        radio.addEventListener('change', (event) => {
+            console.log(event.target.value)
+        })
+
+        const label = document.createElement('label')
+        label.innerHTML = `
+            ${date} ${month}
+            <br/>
+            ${dayOfWeek}
+        `
+        label.htmlFor = 'radio' + i + 1
+
+        dateDiv.appendChild(radio)
+        dateDiv.appendChild(label)
+
+    }
+
+}
+
 window.onload = async () => {
 
     const courtId = getParam('court-id');
@@ -24,6 +74,8 @@ window.onload = async () => {
         <div>rating: ${court[0].courtRating}</div>
         <div>rating count: ${court[0].courtRatingCount}</div>
     `
+
+    fillDateDiv()
 
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();

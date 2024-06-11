@@ -2,3 +2,28 @@
     padding: 1rem;
     border-radius: 1rem;
 }
+
+
+#dateDiv {
+    margin: 2rem;
+}
+
+#dateDiv > input {
+    display: none;
+}
+
+#dateDiv > label {
+    display: block;
+    text-align: center;
+    width: 10rem;
+
+    border: 1px solid #9C9C9C;
+    border-radius: 1rem;
+    margin: 0.5rem;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #165CD9;
+    color: #fff;
+    border: 1px solid #165CD9;
+}

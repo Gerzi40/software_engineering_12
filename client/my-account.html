@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,98 +15,38 @@
     <link rel="stylesheet" href="./css/my-account.css">
 
 </head>
+
 <body>
-    
+
     <nav id="nav"></nav>
     <div id="background"></div>
     <div id="register" class="form"></div>
     <div id="login" class="form"></div>
 
-    
+
     <div class="min-height-100vh" id="my-account-body">
-        <div id="sub-navbar">
-            <div id="profileButton" class="blue-text">➤ Profile</div>
-            <div id="bookingSummaryButton">➤ Booking Summary</div>
-            <div id="bookingHistoryButton">➤ Booking History</div>
-            <div id="insertCourtButton">➤ Register Court</div>
-            <div id="updateCourtButton">➤ Edit Court</div>
-        </div>
-        <div id="profileDiv">
-            <h1>My Account</h1>
+        <h1>My Account</h1>
 
-            <div>
-                Username
-                <input id="usernameInput" />
-            </div>
-            <div>
-                Password
-                <input id="passwordInput" type="password" />
-            </div>
-            <div>
-                <button id="updateButton">Update Profile</button>
-            </div>
-            <div>
-                <label id="updateStatusLabel"></label>
-            </div>
-    
-            <br/>
-    
-            <button id="switchToRenter">Switch to Renter</button>
-            <button id="switchToOwner">Switch to Owner</button>
-            <button id="logoutButton">Logout</button>
+        <div>
+            Username
+            <input id="usernameInput" />
         </div>
-        <div id="bookingSummaryDiv">
-            booking summary
-            <table id="bookingSummaryTable">
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Date</th>
-                    <th>Duration</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </table>
+        <div>
+            Password
+            <input id="passwordInput" type="password" />
         </div>
-        <div id="bookingHistoryDiv">
-            booking history
+        <div>
+            <button id="updateButton">Update Profile</button>
         </div>
-        <div id="insertCourtDiv">
-            <h1>Insert Court</h1>
+        <div>
+            <label id="updateStatusLabel"></label>
+        </div>
 
-            <div>
-                Court Name
-                <input id="nameInsertInput" />
-            </div>
-            <div>
-                Court Address
-                <input id="addressInsertInput" />
-            </div>
-            <div>
-                Court Type
-                <select id="typeInsertDdl">
-                    <option value="" hidden></option>
-                </select>
-            </div>
-            <div>
-                Court Price
-                <input id="priceInsertInput" />
-            </div>
-            <div>
-                Court Image
-                <input type="file" id="fileInsertInput">
-            </div>
-            <div>
-                <a id="insertButton" download>Insert</a>
-            </div>
-            <div>
-                <label id="statusInsertLabel"></label>
-            </div>
-        </div>
-        <div id="updateCourtDiv">
-            update court
-        </div>
+        <br />
+
+        <button id="switchToRenter">Switch to Renter</button>
+        <button id="switchToOwner">Switch to Owner</button>
+        <button id="logoutButton">Logout</button>
     </div>
 
     <footer id="footer"></footer>
@@ -118,4 +59,5 @@
     <script type="module" src="./javascript/my-account.js"></script>
 
 </body>
+
 </html>

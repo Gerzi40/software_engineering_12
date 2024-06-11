@@ -3,12 +3,6 @@ import { getUserByUserId, updateUser, getScheduleByRenterId, getCourtTypes, inse
 const usernameInput = document.getElementById('usernameInput')
 const passwordInput = document.getElementById('passwordInput')
 
-const profileDiv = document.getElementById('profileDiv')
-const bookingSummaryDiv = document.getElementById('bookingSummaryDiv')
-const bookingHistoryDiv = document.getElementById('bookingHistoryDiv')
-const insertCourtDiv = document.getElementById('insertCourtDiv')
-const updateCourtDiv = document.getElementById('updateCourtDiv')
-
 window.onload = async () => {
 
     const userId = localStorage.getItem("user")
@@ -25,118 +19,6 @@ window.onload = async () => {
     passwordInput.value = user[0].userPassword
 
 }
-
-const changeDisplay = (profile, bookingSummary, bookingHistory, insertCourt, updateCourt) => {
-    profileDiv.style.display = profile ? 'block' : 'none'
-    bookingSummaryDiv.style.display = bookingSummary ? 'block' : 'none'
-    bookingHistoryDiv.style.display = bookingHistory ? 'block' : 'none'
-    insertCourtDiv.style.display = insertCourt ? 'block' : 'none'
-    updateCourtDiv.style.display = updateCourt ? 'block' : 'none'
-
-    document.getElementById('profileButton').className = profile ? 'blue-text' : ''
-    document.getElementById('bookingSummaryButton').className = bookingSummary ? 'blue-text' : ''
-    document.getElementById('bookingHistoryButton').className = bookingHistory ? 'blue-text' : ''
-    document.getElementById('insertCourtButton').className = insertCourt ? 'blue-text' : ''
-    document.getElementById('updateCourtButton').className = updateCourt ? 'blue-text' : ''
-}
-
-document.getElementById('profileButton').addEventListener('click', () => changeDisplay(true, false, false, false, false))
-
-document.getElementById('bookingSummaryButton').addEventListener('click', async () => {
-
-    const schedules = await getScheduleByRenterId(localStorage.getItem('user'))
-    schedules.forEach(schedule => {
-        const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)
-        const dbEndDate = new Date(`${schedule.scheduleDate}T${schedule.endTime}`)
-        const options = { day: 'numeric', month: 'long', year: 'numeric' }
-        const formattedDate = dbStartDate.toLocaleDateString('en-GB', options)
-
-        const currentDate = new Date()
-
-        const tr = document.createElement('tr')
-
-        const name = document.createElement('td')
-        const type = document.createElement('td')
-        const date = document.createElement('td')
-        const duration = document.createElement('td')
-        const price = document.createElement('td')
-        const status = document.createElement('td')
-        const action = document.createElement('td')
-
-        name.innerHTML = schedule.courtName
-        type.innerHTML = schedule.courtTypeName
-        date.innerHTML = formattedDate
-        duration.innerHTML = `${schedule.startTime.slice(0, 5)}-${schedule.endTime.slice(0, 5)}`
-        price.innerHTML = Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR"
-        }).format(schedule.courtPrice)
-
-        tr.appendChild(name)
-        tr.appendChild(type)
-        tr.appendChild(date)
-        tr.appendChild(duration)
-        tr.appendChild(price)
-        tr.appendChild(status)
-        tr.appendChild(action)
-
-        document.getElementById('bookingSummaryTable').appendChild(tr)
-    });
-    changeDisplay(false, true, false, false, false)
-})
-
-document.getElementById('bookingHistoryButton').addEventListener('click', async () => {
-    const schedules = await getScheduleByRenterId(userId)
-
-    schedules.forEach(schedule => {
-        const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)
-        const dbEndDate = new Date(`${schedule.scheduleDate}T${schedule.endTime}`)
-        const options = { day: 'numeric', month: 'long', year: 'numeric' }
-        const formattedDate = dbStartDate.toLocaleDateString('en-GB', options)
-
-        const currentDate = new Date()
-
-        document.getElementById("bookingListDiv").innerHTML += `
-            <br/>
-            <div>
-                <p>${schedule.courtName}</p>
-                <p>${formattedDate}</p>
-                <p>${schedule.startTime.slice(0, 5)}-${schedule.endTime.slice(0, 5)}</p>
-                <p>${schedule.courtAddress}</p>
-                ${currentDate < dbStartDate ? '<p>status: upcoming</p>' : '' }
-                ${currentDate > dbEndDate ? '<p>status: done</p>' : '' }
-                ${currentDate > dbStartDate && currentDate < dbEndDate ? '<p>status: ongoing</p>' : '' }
-            </div>
-        `
-    });
-    changeDisplay(false, false, true, false, false)
-})
-
-document.getElementById('insertCourtButton').addEventListener('click', async () => {
-
-    const courtTypes = await getCourtTypes()
-
-    document.getElementById('typeInsertDdl').innerHTML = `
-        <option value="" hidden></option>
-    `
-
-    courtTypes.forEach((courtType, index) => {
-        const option = document.createElement('option')
-        option.innerHTML = courtType.courtTypeName
-        option.value = index + 1
-        document.getElementById('typeInsertDdl').appendChild(option)
-    });
-    changeDisplay(false, false, false, true, false)
-})
-
-document.getElementById('updateCourtButton').addEventListener('click', async () => {
-
-    const courts = await getCourtsByOwnerId(localStorage.getItem('user'))
-    courts.forEach(court => {
-
-    })
-    changeDisplay(false, false, false, false, true)
-})
 
 document.getElementById('updateButton').addEventListener('click', async () => {
 
