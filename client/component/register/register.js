@@ -78,7 +78,7 @@ document.getElementById("registerSubmitButton").addEventListener("click", async 
 
         statusLabel.innerHTML = ""
         
-        const res = await insertUser(name, password, '')
+        const res = await insertUser(name, password, role)
         console.log(res)
         if(res.message == "Username already taken") {
             statusLabel.innerHTML = "Uda ada username yang sama"

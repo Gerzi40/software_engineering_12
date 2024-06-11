@@ -65,6 +65,10 @@ window.onload = async () => {
 
     const courtId = getParam('court-id');
 
+    if(courtId == "" || courtId == undefined) {
+        window.location.href = "./court.html"
+    }
+
     const court = await getCourtByCourtId(courtId)
     document.getElementById("courtDetailDiv").innerHTML = `
         <h1 class="page-title">${court[0].courtName}</h1>

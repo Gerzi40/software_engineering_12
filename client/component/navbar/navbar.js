@@ -21,6 +21,7 @@ document.getElementById("nav").innerHTML = `
         <a href="about.html">About</a>
     </div>
     <div id="ownerLink">
+        <a href="court.html">Court</a>
         <a href="my-court.html">My Court</a>
         <a href="insert-court.html">Insert Court</a>
         <a href="about.html">About</a>

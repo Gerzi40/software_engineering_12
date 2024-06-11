@@ -9,7 +9,9 @@ const getParam = (parameterName) => {
 
 window.onload = async () => {
 
-    if(localStorage.getItem("user") == null) {
+    const userId = localStorage.getItem("user")
+
+    if(userId == null) {
         document.getElementById('background').style.display = 'block'
         document.getElementById('login').style.display = 'flex'
         return
@@ -19,6 +21,26 @@ window.onload = async () => {
         window.location.href = "./index.html"
     }
 
+    const courtId = getParam("court-id")
+
+    if(courtId == "" || courtId == undefined) {
+        window.location.href = "./my-court.html"
+    }
+
+    const court = await getCourtByCourtId(courtId)
+
+    if(court[0].ownerId != userId) {
+        window.location.href = "./my-court.html"
+    }
+
+    // console.log(court)
+
+    document.getElementById("nameInput").value = court[0].courtName
+    document.getElementById("addressInput").value = court[0].courtAddress
+    document.getElementById("typeDdl").selectedIndex = court[0].courtTypeId - 1
+    document.getElementById("priceInput").value = court[0].courtPrice
+    // document.getElementById("imageInput").value = court[0].courtImage
+
     const courtTypes = await getCourtTypes()
     // console.log(courtTypes)
     courtTypes.forEach(courtType => {
@@ -26,17 +48,6 @@ window.onload = async () => {
             <option value=${courtType.courtTypeId}>${courtType.courtTypeName}</option>
         `
     });
-
-
-    const courtId = getParam("court-id")
-    const court = await getCourtByCourtId(courtId)
-    // console.log(court)
-
-    document.getElementById("nameInput").value = court[0].courtName
-    document.getElementById("addressInput").value = court[0].courtAddress
-    document.getElementById("typeDdl").selectedIndex = court[0].courtTypeId - 1
-    document.getElementById("priceInput").value = court[0].courtPrice
-    document.getElementById("imageInput").value = court[0].courtImage
 
 }
 

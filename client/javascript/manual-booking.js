@@ -67,9 +67,31 @@ const fillDateDiv = () => {
 
 window.onload = async () => {
 
+    const userId = localStorage.getItem("user")
+
+    if(userId == null) {
+        document.getElementById('background').style.display = 'block'
+        document.getElementById('login').style.display = 'flex'
+        return
+    }
+
+    if(localStorage.getItem('user-role') != 'owner') {
+        window.location.href = "./index.html"
+    }
+
     const courtId = getParam('court-id');
 
+    if(courtId == "" || courtId == undefined) {
+        window.location.href = "./my-court.html"
+    }
+
     const court = await getCourtByCourtId(courtId)
+
+    if(court[0].ownerId != userId) {
+        window.location.href = "./my-court.html"
+        return
+    }
+
     document.getElementById("courtDetailDiv").innerHTML = `
         <div>court id: ${court[0].courtId}</div>
         <div>name: ${court[0].courtName}</div>
