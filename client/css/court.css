@@ -30,7 +30,6 @@
 
     padding: 0.6rem;
     padding-left: 2rem;
-    outline: none;
     border-radius: 0.5rem;
     border: 2px grey solid;
 
@@ -42,13 +41,17 @@
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box; 
     box-sizing:content-box;
-    outline: none;
 
     padding: 0.6rem;
     padding-left: 2rem;
     border-radius: 0.5rem;
     border: 2px grey solid;
     width: 10rem;
+    color: grey;
+}
+
+.searchBox > select > option {
+    color: #000;
 }
 
 #findCourtButton {

@@ -156,7 +156,10 @@ body {
     color: grey;
 }
 
-
+#form > div > select option {
+    color: black;
+    font-size: 1rem;
+}
 
 #form > div > div {
     background-color: #165CD9;

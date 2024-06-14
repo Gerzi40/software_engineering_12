@@ -93,3 +93,21 @@ const searchCourts = async (toFind, category, location) => {
         return matchesName && matchesCategory && matchesLocation;
     });
 };
+
+const categorySelect = document.getElementById('categorySelect')
+categorySelect.addEventListener('change', () => {
+    if(categorySelect.value != '') {
+        categorySelect.style.color = 'black'
+    } else {
+        categorySelect.style.color = 'grey'
+    }
+})
+
+const locationSelect = document.getElementById('locationSelect')
+locationSelect.addEventListener('change', () => {
+    if(locationSelect.value != '') {
+        locationSelect.style.color = 'black'
+    } else {
+        locationSelect.style.color = 'grey'
+    }
+})
