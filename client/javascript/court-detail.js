@@ -120,9 +120,7 @@ document.getElementById("bookButton").addEventListener("click", async () => {
 
     // console.log(checkBoxsValue);
 
-    const res = await insertSchedule(courtId, date, checkBoxsValue, userId)
-    console.log(res)
-    window.location.reload()
+    window.location.href = `payment.html?court-id=${courtId}&date=${date}&schedule=${checkBoxsValue.toString()}`
 })
 
 const fillScheduleDiv = async (date) => {
