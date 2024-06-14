@@ -1,28 +1,29 @@
-#my-account-body {
-    padding: 0 3rem;
+.inputDiv > input {
+    width: calc(100% - 1rem);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #9C9C9C;
+    font-size: 1.1rem;
 }
 
-#sub-navbar {
-    border: solid 1px #9C9C9C;
-    border-radius: 1rem;
-    width: fit-content;
-    padding: 1rem;
-    margin: 4rem 0 0 4rem;
-}
-
-#sub-navbar > div {
+#updateButton, #logoutButton {
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
     cursor: pointer;
-    width: fit-content;
 }
 
-.blue-text {
-    color: #165CD9
+#updateButton {
+    background-color: #165CD9;
+    color: white;
 }
 
-#profileDiv {
-    display: block;
-}
-
-#bookingSummaryDiv, #bookingHistoryDiv, #insertCourtDiv, #updateCourtDiv {
-    display: none;
+#logoutButton {
+    color: white;
+    background-color: black;
 }
