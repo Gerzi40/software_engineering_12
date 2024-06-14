@@ -54,6 +54,11 @@
     color: #000;
 }
 
+select:invalid,
+select option[value=""] {
+  color: #999999;
+}
+
 #findCourtButton {
     background-color: #165CD9;
     color: white;

@@ -30,6 +30,24 @@ window.onload = async () => {
         document.getElementById('nameInput').value = name ?  name : ''
         document.getElementById('categorySelect').value = category ?  category : ''
         document.getElementById('locationSelect').value = location ?  location : ''
+
+        if(category != '') {
+            categorySelect.style.color = 'black'
+        } else {
+            categorySelect.style.color = 'grey'
+        }
+
+        if(location != '') {
+            locationSelect.style.color = 'black'
+        } else {
+            locationSelect.style.color = 'grey'
+        }
+        // console.log(name == '')
+        // console.log(name == undefined)
+        // console.log(category == '')
+        // console.log(category == undefined)
+        // console.log(location == '')
+        // console.log(location == undefined)
         const newCourts = await searchCourts(name, category, location)
         displayCourts(newCourts)
     }
@@ -59,17 +77,6 @@ const displayCourts = (courtsToDisplay) => {
     });
 };
 
-document.getElementById('nameInput').addEventListener('keypress', async (event) => {
-    const query = event.target.value;
-
-    if(query == '') return
-
-    if (event.key === 'Enter') {
-        const filteredCourts = await searchCourts(query, '', '');
-        displayCourts(filteredCourts);
-    }
-});
-
 document.getElementById('findCourtButton').addEventListener('click', async () => {
 
     const name = document.getElementById('nameInput').value
@@ -97,7 +104,7 @@ document.getElementById('findCourtButton').addEventListener('click', async () =>
 
 const searchCourts = async (toFind, category, location) => {
     const courts = await getCourts();
-    const toFindLowerCase = toFind.toLowerCase();
+    const toFindLowerCase = toFind ? toFind.toLowerCase() : '';
     return courts.filter(court => {
         const matchesName = toFind ? court.courtName.toLowerCase().includes(toFindLowerCase) : true;
         const matchesCategory = category ? court.courtTypeName === category : true;
