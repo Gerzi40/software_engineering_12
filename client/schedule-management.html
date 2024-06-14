@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./component/background/background.css">
     <link rel="stylesheet" href="./component/register/register.css">
     <link rel="stylesheet" href="./component/login/login.css">
-    <link rel="stylesheet" href="./css/manual-booking.css">
+    <link rel="stylesheet" href="./css/schedule-management.css">
 </head>
 <body>
 
@@ -24,9 +24,9 @@
 
         <div id="courtDetailDiv"></div>
     
-        <div>
+        <!-- <div>
             <input type="date" id="dateInput" />
-        </div>
+        </div> -->
 
         <div class="grey-line"></div>
 
@@ -42,11 +42,12 @@
             <div id="scheduleDiv"></div>
         </div>
     
-        <div>
-            <input id="hiddenInput" type="hidden" />
+        <!-- <div>
             <p id="paragraf"></p>
-            <button id="infoAndBook" style="display: none;">Manual Book</button>
-        </div>
+        </div> -->
+        
+        <input id="hiddenInput" type="hidden" />
+        <div id="manualBookButton" style="display: none;">Manual Book</div>
     </div>
 
     <footer id="footer"></footer>
@@ -56,6 +57,6 @@
     <script type="module" src="./component/register/register.js"></script>
     <script type="module" src="./component/login/login.js"></script>
     <script type="module" src="./component/background/background.js"></script>
-    <script type="module" src="./javascript/manual-booking.js"></script>
+    <script type="module" src="./javascript/schedule-management.js"></script>
 </body>
 </html>

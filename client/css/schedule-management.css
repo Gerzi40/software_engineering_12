@@ -65,3 +65,41 @@
     background-color: #EBECEE;
     color: #C0C1C6;
 }
+
+#scheduleDiv input[type=radio] {
+    display: none;
+}
+
+#scheduleDiv input[type=radio] + label {
+    width: 9rem;
+    height: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #9C9C9C;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+
+    /* padding: 0.5rem 0; */
+}
+
+#scheduleDiv input[type="radio"]:checked + label {
+    background-color: #165CD9;
+    border: 1px solid #165CD9;
+    color: #fff;
+}
+
+#manualBookButton {
+    text-align: center;
+    background-color: #165CD9;
+    padding: 0.75rem 2rem;
+    color: white;
+    /* font-size: 1.5rem; */
+    font-weight: 700;
+    border-radius: 1rem;
+    cursor: pointer; 
+}

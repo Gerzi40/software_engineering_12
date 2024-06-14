@@ -4,7 +4,7 @@ const dateInput = document.getElementById("dateInput")
 const scheduleDiv = document.getElementById('scheduleDiv')
 const paragraf = document.getElementById('paragraf')
 const hiddenInput = document.getElementById('hiddenInput')
-const infoAndBook = document.getElementById('infoAndBook')
+const manualBookButton = document.getElementById('manualBookButton')
 
 const getParam = (parameterName) => {
     const url = window.location.href;
@@ -107,72 +107,90 @@ window.onload = async () => {
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();
     const date = today.toISOString().split('T')[0];
-    dateInput.min = date;
-    dateInput.value = date;
 
     fillScheduleDiv(date)
     
 }
 
-document.getElementById("dateInput").addEventListener("change", async () => {
+// document.getElementById("dateInput").addEventListener("change", async () => {
 
-    const date = dateInput.value
-    fillScheduleDiv(date)
+//     const date = dateInput.value
+//     fillScheduleDiv(date)
 
-    paragraf.innerHTML = ''
-    hiddenInput.value = ''
+//     paragraf.innerHTML = ''
+//     hiddenInput.value = ''
 
-})
+// })
 
 const fillScheduleDiv = async (date) => {
 
     const courtId = getParam("court-id")
 
     const scheduleTypes = await getScheduleTypes()
-    const schedules = await getScheduleByCourtIdAndDate(courtId, date)
+    let scheduleTypeIds = await getScheduleByCourtIdAndDate(courtId, date)
+    scheduleTypeIds = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
     
     const currentDate = new Date()
-    const formattedDate = currentDate.toISOString().split('T')[0];
     const currentTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`
     
     scheduleDiv.innerHTML = ""
+
+    // value checkbox merupakan scheduletypeid
     scheduleTypes.forEach((scheduleType, index) => {
 
-        const button = document.createElement('button')
-        button.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
 
-        const filteredSchedule = schedules.find(schedule => schedule.scheduleTypeId == scheduleType.scheduleTypeId)
+        // gada di table schedule ato uda melewati waktu
+        if(scheduleTypeIds.indexOf(index + 1) == -1 && (currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA'))) {
 
-        if(filteredSchedule) {
-            button.addEventListener('click', () => {
-                paragraf.innerHTML = 'Uda ada yang booking. user id=' + filteredSchedule.renterId
-                hiddenInput.value = ''
-                infoAndBook.style.display = 'none'
+            const div = document.createElement("div")
+            const checkBox = document.createElement("input")
+            checkBox.type = 'radio'
+            checkBox.id = `checkBox${index + 1}`
+            checkBox.value = index + 1
+            checkBox.name = 'hour'
+            checkBox.addEventListener('change', async (event) => {
+                hiddenInput.value = event.target.value
+                manualBookButton.style.display = 'block'
+                // let checkBoxs = document.querySelectorAll('input[type="checkbox"]:checked');
+                // const amount = checkBoxs.length
+                // const court = await getCourtByCourtId(courtId)
+                // const totalCourtPriceInInt = parseInt(court[0].courtPrice, 10) * amount;
+                // let totalCourtPriceInString = (totalCourtPriceInInt / 1000).toLocaleString('id-ID', {
+                //     minimumFractionDigits: 3,
+                //     maximumFractionDigits: 3
+                //   }).replace(',', '.')
+                // document.getElementById("totalPrice").innerHTML = `Rp ${totalCourtPriceInString}`
             })
-        } else if(currentTime > scheduleType.startTime && date == formattedDate) {
-            button.addEventListener('click', () => {
-                paragraf.innerHTML = 'sudah melewati waktu'
-                hiddenInput.value = ''
-                infoAndBook.style.display = 'none'
-            })
+
+            const label = document.createElement("label")
+            label.htmlFor = `checkBox${index + 1}`
+            label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
+            
+            div.appendChild(checkBox)
+            div.appendChild(label)
+
+            scheduleDiv.appendChild(div)
+
         } else {
-            button.addEventListener('click', () => {
-                paragraf.innerHTML = 'available'
-                hiddenInput.value = scheduleType.scheduleTypeId
-                infoAndBook.style.display = 'block'
-            })
-        }
 
-        scheduleDiv.appendChild(button)
-        
+            const div = document.createElement("div")
+            const label = document.createElement("label")
+            label.className = 'disabledLabel'
+            label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
+
+            div.appendChild(label)
+            scheduleDiv.appendChild(div)
+
+        }
     });
 
 }
 
-infoAndBook.addEventListener('click', async () => {
+manualBookButton.addEventListener('click', async () => {
 
     const courtId = getParam('court-id')
-    const date = dateInput.value
+    // const date = dateInput.value
+    const date = document.querySelector('input[name="date"]:checked').value;
     const typeId = hiddenInput.value
     const userId = localStorage.getItem('user')
 

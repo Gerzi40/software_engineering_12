@@ -31,7 +31,7 @@ window.onload = async () => {
         update.href = `update-court.html?court-id=${court.courtId}`
         update.innerHTML = 'Update'
         const manual = document.createElement('a')
-        manual.href = `manual-booking.html?court-id=${court.courtId}`
+        manual.href = `schedule-management.html?court-id=${court.courtId}`
         manual.innerHTML = 'Manual Booking'
         const button = document.createElement('button')
         button.textContent = 'Delete'
