@@ -78,9 +78,21 @@ document.getElementById('findCourtButton').addEventListener('click', async () =>
 
     if(name == '' && category == '' && location == '') return
 
-    const newCourts = await searchCourts(name, category, location)
-    // console.log(newCourts)
-    displayCourts(newCourts)
+    const params = {
+        name: name,
+        category: category,
+        location: location
+    }
+
+    let url = 'court.html?';
+    for (let key in params) {
+        if (params[key]) {
+            url += encodeURIComponent(key) + '=' + encodeURIComponent(params[key]) + '&';
+        }
+    }
+    url = url.replace(/&$/, '');
+
+    window.location.href = url
 })
 
 const searchCourts = async (toFind, category, location) => {
