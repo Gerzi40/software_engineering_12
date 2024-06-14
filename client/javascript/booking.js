@@ -16,6 +16,33 @@ window.onload = async () => {
 
     const schedules = await getScheduleByRenterId(userId)
 
+    if(schedules.length == 0) {
+        const tr = document.createElement('tr')
+
+        const name = document.createElement('td')
+        name.innerHTML = '-'
+        const type = document.createElement('td')
+        type.innerHTML = '-'
+        const date = document.createElement('td')
+        date.innerHTML = '-'
+        const time = document.createElement('td')
+        time.innerHTML = '-'
+        const price = document.createElement('td')
+        price.innerHTML = '-'
+        const status = document.createElement('td')
+        status.innerHTML = '-'
+
+        tr.appendChild(name)
+        tr.appendChild(type)
+        tr.appendChild(date)
+        tr.appendChild(time)
+        tr.appendChild(price)
+        tr.appendChild(status)
+
+        document.getElementById("bookingTable").appendChild(tr)
+        return;
+    }
+
     schedules.forEach(schedule => {
         const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)
         const dbEndDate = new Date(`${schedule.scheduleDate}T${schedule.endTime}`)
