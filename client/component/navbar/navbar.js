@@ -12,7 +12,7 @@ document.getElementById("nav").innerHTML = `
         <a href="index.html">BOOKSPORT</a>
     </div>
     <div id="guestLink">
-        <a href="court.html">Court</a>
+        <a id="Court" href="court.html">Court</a>
         <a href="about.html">About</a>
     </div>
     <div id="renterLink">
