@@ -16,6 +16,7 @@ document.getElementById("login").innerHTML = `
         </div>
         <button class="submitButton" id="loginSubmitButton">Login</button>
         <label id="loginStatusLabel"></label>
+        <p>Dont have an account? <label id="switchToRegisterButton">Register Here</label></p>
     </div>
 `
 
@@ -52,4 +53,9 @@ document.getElementById("loginSubmitButton").addEventListener("click", async () 
         }
     }
 
+})
+
+document.getElementById('switchToRegisterButton').addEventListener('click', () => {
+    document.getElementById("register").style.display = 'flex'
+    document.getElementById("login").style.display = 'none'
 })

@@ -51,9 +51,11 @@ if(localStorage.getItem("user") != null) {
 document.getElementById("registerButton").addEventListener("click", () => {
     document.getElementById('background').style.display = 'block'
     document.getElementById('register').style.display = 'flex'
+    document.getElementById('registerUsernameInput').focus()
 })
 
 document.getElementById("loginButton").addEventListener("click", () => {
     document.getElementById('background').style.display = 'block'
     document.getElementById('login').style.display = 'flex'
+    document.getElementById('loginUsernameInput').focus()
 })

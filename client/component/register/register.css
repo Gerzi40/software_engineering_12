@@ -55,7 +55,6 @@
 .formDiv > div > input {
     border: 2px solid #E4E5E7;
     border-radius: 0.5rem;
-    outline: none;
 
     width: calc(100% - 1rem - 4px);
     padding: 0.3rem 0.5rem;
@@ -64,7 +63,6 @@
 .formDiv > div > select {
     border: 2px solid #E4E5E7;
     border-radius: 0.5rem;
-    outline: none;
 
     width: calc(100%);
     padding: 0.3rem 0.5rem;
@@ -87,4 +85,10 @@
 
 .submitButton:active {
     background-color: #1C1C1C;
+}
+
+#switchToLoginButton {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
 }
