@@ -97,4 +97,5 @@ document.getElementById("registerSubmitButton").addEventListener("click", async 
 document.getElementById('switchToLoginButton').addEventListener('click', () => {
     document.getElementById("register").style.display = 'none'
     document.getElementById("login").style.display = 'flex'
+    document.getElementById('loginUsernameInput').focus()
 })
