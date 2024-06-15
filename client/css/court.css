@@ -1,71 +1,78 @@
 
-
 #searchDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin: 2rem 0;
 }
 
 .searchBox {
-    /* background-color: black; */
     position: relative;
 }
 
 .searchBox > img {
-
     width: 1.2rem;
     height: 1.2rem;
-
     position: absolute;
     top: 0.6rem;
     left: 0.6rem;
 }
 
-.searchBox > input {
-    -ms-box-sizing:content-box;
-    -moz-box-sizing:content-box;
-    -webkit-box-sizing:content-box; 
-    box-sizing:content-box;
-
-    padding: 0.6rem;
-    padding-left: 2rem;
-    border-radius: 0.5rem;
-    border: 2px grey solid;
-
-    width: 10rem;
-}
-
+.searchBox > input,
 .searchBox > select {
-    -ms-box-sizing:content-box;
-    -moz-box-sizing:content-box;
-    -webkit-box-sizing:content-box; 
-    box-sizing:content-box;
-
+    box-sizing: content-box;
     padding: 0.6rem;
     padding-left: 2rem;
     border-radius: 0.5rem;
-    border: 2px grey solid;
+    border: 2px solid grey;
     width: 10rem;
-    color: grey;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
+.searchBox > input:hover,
+.searchBox > select:hover,
+.searchBox > input:focus,
+.searchBox > select:focus {
+    border-color: #165CD9;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+/* Option styling */
 .searchBox > select > option {
     color: #000;
 }
 
+/* Invalid select styling */
 select:invalid,
 select option[value=""] {
   color: #999999;
 }
 
+/* Button styling */
 #findCourtButton {
     background-color: #165CD9;
     color: white;
     cursor: pointer;
     font-weight: 700;
+    border: 2px solid #165CD9;
+    border-radius: 0.3rem;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#findCourtButton:hover {
+    background-color: #092d69;
+    transform: scale(1.02);
+}
+
+#searchDiv {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
 }
 
 .grid-container {

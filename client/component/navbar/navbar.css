@@ -27,6 +27,11 @@ nav a {
     font-weight: 900;
     font-style: italic;
     color: #165CD9;
+    transition: color 0.5s ease;
+}
+
+#navLogo > a:hover{
+    color: #092d69;
 }
 
 #guestLink , #renterLink, #ownerLink {
