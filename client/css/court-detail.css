@@ -13,16 +13,13 @@
 
 #imageDiv > img {
     width: 100%;
+    border-radius: 2px;
 }
-
-
-
-
-
 
 #formTitle {
     color: #165CD9;
     /* margin-left: 5rem; */
+    
 }
 
 .grey-line {
@@ -30,7 +27,10 @@
     background-color: #EDEDED;
 }
 
-
+.page-title{
+    border-radius: 4px;
+    font-family: "Montserrat", sans-serif;
+}
 
 .sub-form > h1 {
     margin: 0;

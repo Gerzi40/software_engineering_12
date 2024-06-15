@@ -4,7 +4,7 @@ document.getElementById('footer').innerHTML = `
         <div>
             <div class="align-img-text">
                 <img src="./asset/footer/Location.png" />
-                Binus University
+                <a href="https://maps.app.goo.gl/t2BJpZz2vvRypjZA8" target="_blank" rel="noopener noreferrer">Binus University</a>
             </div>
             <p>Jl. Raya Kb. Jeruk No.27,  RT.1/RW.9, Kemanggisan, Kec. Palmerah, Kota Jakarta Barat,  Daerah Khusus Ibukota Jakarta 11530</p>
         </div>

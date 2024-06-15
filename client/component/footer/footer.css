@@ -54,3 +54,8 @@ footer > div > div:nth-child(4) {width: 10%;}
     width: 3rem;
     height: 3rem;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
