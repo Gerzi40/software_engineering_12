@@ -10,8 +10,9 @@
     /* background-color: black; */
 }
 
-#bookingTable th, #bookingTable td {
-    width: calc(100%/6);
+#bookingTable th,
+#bookingTable td {
+    width: calc(100%/7);
     text-align: center;
 }
 
@@ -39,3 +40,32 @@
     font-weight: 700;
     padding: 1rem;
 } */
+
+.RateButton {
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.star {
+    font-size: 10vh;
+    cursor: pointer;
+}
+
+.one {
+    color: rgb(251, 255, 0);
+}
+
+#pop-up{
+    display: none;
+    position: absolute;
+    width: 50rem;
+    height: 30rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+.RateButton{
+    align-items: center;
+}
