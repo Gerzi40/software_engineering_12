@@ -1,6 +1,7 @@
-import { getCities, getCourtTypes } from "./module.js"
+import { getCities, getCourtTypes, updateCourtRating, updateScheduleRating } from "./module.js"
 
 window.onload = async () => {
+    console.log(res)
     const cities = await getCities()
     const courtTypes = await getCourtTypes()
 

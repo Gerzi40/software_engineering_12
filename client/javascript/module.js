@@ -67,6 +67,23 @@ export const updateCourt = async (id, name, address, typeId, price, image) => {
     return data
 }
 
+export const updateCourtRating = async (id, rating, ratingCount) => {
+    const res = await fetch(`http://localhost:5000/court-rating`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            courtId: id,
+            courtRating: rating,
+            courtRatingCount: ratingCount
+        })
+    })
+    const data = await res.json()
+    return data
+}
+
 export const deleteCourt = async (id) => {
     const res = await fetch(`http://localhost:5000/court/${id}`, {
         method: 'DELETE',
@@ -115,6 +132,24 @@ export const insertSchedule = async (courtId, date, typeIds, renterId) => {
             scheduleDate: date,
             scheduleTypeIds: typeIds,
             renterId: renterId
+        })
+    })
+    const data = await res.json()
+    return data
+}
+
+export const updateScheduleRating = async (id, date, typeId, rating) => {
+    const res = await fetch(`http://localhost:5000/schedule-rating`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            courtId: id,
+            scheduleDate: date,
+            scheduleTypeId: typeId,
+            scheduleRating: rating
         })
     })
     const data = await res.json()
