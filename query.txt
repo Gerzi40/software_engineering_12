@@ -37,6 +37,8 @@ CREATE TABLE schedule (
     scheduleDate VARCHAR(10) NOT NULL,
     scheduleTypeId INT NOT NULL,
     renterId INT NOT NULL,
+    scheduleRating TINYINT NOT NULL,
+    isRated TINYINT NOT NULL,
     CONSTRAINT FK_schedule_courtId FOREIGN KEY (courtId) REFERENCES court (courtId),
     CONSTRAINT FK_schedule_scheduleTypeId FOREIGN KEY (scheduleTypeId) REFERENCES schedule_type (scheduleTypeId),
     CONSTRAINT FK_schedule_buyerId FOREIGN KEY (renterId) REFERENCES user (userId),
@@ -79,10 +81,6 @@ INSERT INTO court (ownerId, courtName, courtAddress, courtTypeId, courtPrice, co
     (3, 'Gelora Bung Karno Main Stadium', 'Jl. Pintu Satu Senayan, Gelora, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270', 5, 50000, 4.5, 2, 'e.jpeg'),
 	(3, 'GOR Badminton TVRI', '1, Jl. Gerbang Pemuda No.2, RT.1/RW.3, Gelora, Tanah Abang, Central Jakarta City, Jakarta 10270', 2, 60000, 0, 1, 'f.jpeg');
 
-INSERT INTO schedule (courtId, scheduleDate, scheduleTypeId, renterId) VALUES
-	(1, '2024-05-26', 1, 4),
-	(1, '2024-05-26', 2, 4),
-    (1, '2024-05-27', 1, 4),
-	(2, '2024-05-26', 1, 5),
-	(2, '2024-05-26', 2, 5),
-    (2, '2024-05-26', 3, 5);
+INSERT INTO schedule (courtId, scheduleDate, scheduleTypeId, renterId, scheduleRating, isRated) VALUES
+	(1, '2024-06-16', 1, 4, 5, 1),
+	(1, '2024-06-16', 2, 4, 0, 0)

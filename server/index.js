@@ -98,6 +98,28 @@ app.put("/court", (req, res) => {
     })
 })
 
+app.put("/court-rating", (req, res) => {
+    const id = req.body.courtId
+    const rating = req.body.courtRating
+    const ratingCount = req.body.courtRatingCount
+
+    db.query(`
+    UPDATE court 
+    SET 
+        courtRating = ?,
+        courtRatingCount = ?
+    WHERE
+        courtId = ?`, 
+    [rating, ratingCount, id],
+    (err, result) => {
+        if(err){
+            res.send({message: err})
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 app.delete("/court/:courtId", (req, res) => {
     const courtId = req.params.courtId
     
@@ -178,6 +200,22 @@ app.post("/schedule", (req, res) => {
             res.send({message: err})
         } else {
             res.send({message: "Insert Schedule Success"})
+        }
+    })
+})
+
+app.put("/schedule-rating", (req, res) => {
+    
+    const courtId = req.body.courtId
+    const scheduleDate = req.body.scheduleDate
+    const scheduleTypeId = req.body.scheduleTypeId
+    const scheduleRating = req.body.scheduleRating
+
+    db.query('UPDATE schedule SET scheduleRating = ?, isRated = 1 WHERE courtId=? AND scheduleDate=? AND scheduleTypeId=?', [scheduleRating, courtId, scheduleDate, scheduleTypeId], (err, result) => {
+        if(err){
+            res.send({message: err})
+        } else {
+            res.send({message: "Success"})
         }
     })
 })
