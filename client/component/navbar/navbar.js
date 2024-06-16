@@ -60,4 +60,3 @@ document.getElementById("loginButton").addEventListener("click", () => {
     document.getElementById('loginUsernameInput').focus()
 })
 
-console.log(window.location.href.substring(29).startsWith('court'))
