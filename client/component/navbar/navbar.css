@@ -64,6 +64,14 @@ nav a {
     color: #000000;
 }
 
+#guestLink > .active::after, #renterLink > .active::after, #ownerLink > .active::after {
+    width: 100%;
+}
+
+#guestLink > .active, #renterLink > .active, #ownerLink > .active {
+    color: #000000;
+}
+
 #guestLink {display: flex;}
 #renterLink {display: none;}
 #ownerLink {display: none;}

@@ -12,19 +12,19 @@ document.getElementById("nav").innerHTML = `
         <a href="index.html">BOOKSPORT</a>
     </div>
     <div id="guestLink">
-        <a id="Court" href="court.html">Court</a>
-        <a href="about.html">About</a>
+        <a id="Court" href="court.html" ${window.location.href.substring(29).startsWith('court') && 'class="active"'}>Court</a>
+        <a href="about.html" ${window.location.href.substring(29).startsWith('about') && 'class="active"'}>About</a>
     </div>
     <div id="renterLink">
-        <a href="court.html">Court</a>
-        <a href="booking.html">Booking</a>
-        <a href="about.html">About</a>
+        <a href="court.html" ${window.location.href.substring(29).startsWith('court') && 'class="active"'}>Court</a>
+        <a href="booking.html" ${window.location.href.substring(29).startsWith('booking') && 'class="active"'}>Booking</a>
+        <a href="about.html" ${window.location.href.substring(29).startsWith('about') && 'class="active"'}>About</a>
     </div>
     <div id="ownerLink">
-        <a href="court.html">Court</a>
-        <a href="my-court.html">My Court</a>
-        <a href="insert-court.html">Insert Court</a>
-        <a href="about.html">About</a>
+        <a href="court.html" ${window.location.href.substring(29).startsWith('court') && 'class="active"'}>Court</a>
+        <a href="my-court.html" ${window.location.href.substring(29).startsWith('my-court') && 'class="active"'}>My Court</a>
+        <a href="insert-court.html" ${window.location.href.substring(29).startsWith('insert-court') && 'class="active"'}>Insert Court</a>
+        <a href="about.html" ${window.location.href.substring(29).startsWith('about') && 'class="active"'}>About</a>
     </div>
 
     <div>
@@ -59,3 +59,5 @@ document.getElementById("loginButton").addEventListener("click", () => {
     document.getElementById('login').style.display = 'flex'
     document.getElementById('loginUsernameInput').focus()
 })
+
+console.log(window.location.href.substring(29).startsWith('court'))

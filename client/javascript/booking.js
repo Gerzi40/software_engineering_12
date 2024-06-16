@@ -99,10 +99,11 @@ window.onload = async () => {
             rateButton.innerHTML = "Rate Here!"
             rateButton.className = "RateButton"
             rateButton.addEventListener('click', () => {
-            document.getElementById('pop-up').style.display = 'flex'
-            document.getElementById('terserah').value = schedule.courtId
-            document.getElementById('terserah1').value = schedule.scheduleDate
-            document.getElementById('terserah2').value = schedule.scheduleTypeId
+                document.getElementById('pop-up').style.display = 'block'
+                document.getElementById('bookingBackground').style.display = 'block'
+                document.getElementById('terserah').value = schedule.courtId
+                document.getElementById('terserah1').value = schedule.scheduleDate
+                document.getElementById('terserah2').value = schedule.scheduleTypeId
             })
             tdtd.appendChild(rateButton)
             tr.appendChild(tdtd)
@@ -151,11 +152,11 @@ window.onload = async () => {
     butt.innerHTML = 'Rate'
     butt.id = 'rateButton'
 
-        span1.className = "star"
-        span2.className = "star"
-        span3.className = "star"
-        span4.className = "star"
-        span5.className = "star"
+    span1.className = "star"
+    span2.className = "star"
+    span3.className = "star"
+    span4.className = "star"
+    span5.className = "star"
 
     span1.addEventListener('click', () => {
         span1.className = "star one"
@@ -230,30 +231,17 @@ window.onload = async () => {
 
 }
 
-// Funtion to update rating
-// function gfg(n) {
-//     let output = 0;
-//     let stars = document.getElementsByClassName("star");
-//     remove();
-//     for (let i = 0; i < n; i++) {
-//         if (n == 1) cls = "one";
-//         else if (n == 2) cls = "two";
-//         else if (n == 3) cls = "three";
-//         else if (n == 4) cls = "four";
-//         else if (n == 5) cls = "five";
-//         console.log(stars[i]);
-//         stars[i].className = "star " + cls;
-//     }
-//     output =  n ;
-// }
+document.getElementById('bookingBackground').addEventListener('click', () => {
+    document.getElementById('bookingBackground').style.display = 'none'
+    document.getElementById('pop-up').style.display = 'none'
 
-// // To remove the pre-applied styling
-// function remove() {
-//     let stars = document.getElementsByClassName("star");
-//     let i = 0;
-//     while (i < 5) {
-//         stars[i].className = "star";
-//         i++;
-//     }
-// }
+    document.getElementById('star1').className = 'star'
+    document.getElementById('star2').className = 'star'
+    document.getElementById('star3').className = 'star'
+    document.getElementById('star4').className = 'star'
+    document.getElementById('star5').className = 'star'
 
+    document.getElementById('terserah').value = ''
+    document.getElementById('terserah1').value = ''
+    document.getElementById('terserah2').value = ''
+})
