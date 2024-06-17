@@ -26,6 +26,7 @@
     color: white;
     padding: 1rem;
     width: fit-content;
+    border-radius: 3px;
 }
 
 /* .page-title {
@@ -46,14 +47,14 @@
     margin-right: 10px;
 }
 
-.star {
+/* .star {
     font-size: 10vh;
     cursor: pointer;
 }
 
 .one {
     color: rgb(251, 255, 0);
-}
+} */
 
 #pop-up{
     display: none;
@@ -63,12 +64,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgb(207, 207, 207);
     z-index: 2;
+    border-radius: 8px;
 }
 
 .RateButton{
     align-items: center;
+    border: 2px solid #165CD9;
+    border-radius: 0.3rem;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    color: white;
+    background-color:#165CD9;
+    transition: background-color 0.5s ease-in-out,  color 0.5s ease-in-out;
+}
+
+.RateButton:hover{
+    background-color: #092d69;
+    color: rgb(225, 225, 225);
 }
 
 #bookingBackground {
@@ -83,3 +99,59 @@
     background-color: black;
     z-index: 2;
 }
+
+.div_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 1rem;
+    font-size: 3vh;
+  }
+  
+  .star_div {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  
+  .star {
+    /* Your existing star styles */
+    font-size: 130px;
+    cursor: pointer;
+    
+  }
+
+  .one{
+    color: #FFA534;
+  }
+
+  
+  .div_button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  #rateButton {
+    /* Your existing button styles */
+    margin-top: 3rem;
+    align-items: center;
+    border: 2px solid #165CD9;
+    border-radius: 0.3rem;
+    padding: 12px 22px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    color: white;
+    background-color:#165CD9;
+    transition: background-color 0.5s ease-in-out,  color 0.5s ease-in-out;
+  }
+  
+  #rateButton:hover {
+    background-color: #092d69;
+    color: rgb(225, 225, 225);
+  }

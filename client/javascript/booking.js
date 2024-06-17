@@ -138,6 +138,15 @@ window.onload = async () => {
 
     const rating = document.getElementById('rating');
 
+    const div_header = document.createElement('div')
+    div_header.className = "div_header"
+    const Header = document.createElement('td')
+    Header.id = "Header"
+    Header.innerHTML = "Please Give Us Rating!"
+    div_header.appendChild(Header)
+
+    const star_div = document.createElement('div');
+    star_div.className = "star_div"
     const span1 = document.createElement('span');
     span1.innerHTML = '★';
     span1.id = 'star1'
@@ -153,10 +162,18 @@ window.onload = async () => {
     const span5 = document.createElement('span');
     span5.innerHTML = '★';
     span5.id = 'star5'
+    star_div.appendChild(span1)
+    star_div.appendChild(span2)
+    star_div.appendChild(span3)
+    star_div.appendChild(span4)
+    star_div.appendChild(span5)
 
+    const div_button = document.createElement('div')
+    div_button.className ="div_button"
     const butt = document.createElement('button');
     butt.innerHTML = 'Rate'
     butt.id = 'rateButton'
+    div_button.appendChild(butt)
 
     span1.className = "star"
     span2.className = "star"
@@ -218,25 +235,24 @@ window.onload = async () => {
             rating = 5
         }
         const court = await getCourtByCourtId(document.getElementById('terserah').value)
+        // console.log(court)
         const ratings = court[0].courtRating;
-        console.log(ratings)
+        // console.log(ratings)
         const rating_count = court[0].courtRatingCount;
-        console.log(rating_count)
-        const a = ((ratings * rating_count) + rating) / rating_count + 1 
-        console.log(a)
-        const kuda = await updateCourtRating(document.getElementById('terserah').value, a, rating_count+1)
+        // console.log(rating_count)
+        const a = ((ratings * rating_count) + rating) / (rating_count + 1)
+        // console.log(rating)
+        // console.log(a)
+        const kuda = await updateCourtRating(document.getElementById('terserah').value, a, rating_count + 1)
         const rest = await updateScheduleRating(document.getElementById('terserah').value, document.getElementById('terserah1').value, document.getElementById('terserah2').value, rating) 
         document.getElementById('pop-up').style.display = 'none'
         window.location.reload();
     })
 
     
-    rating.appendChild(span1)
-    rating.appendChild(span2)
-    rating.appendChild(span3)
-    rating.appendChild(span4)
-    rating.appendChild(span5)
-    rating.appendChild(butt)
+    rating.appendChild(div_header)
+    rating.appendChild(star_div)
+    rating.appendChild(div_button)
 
 }
 

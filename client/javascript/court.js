@@ -78,6 +78,12 @@ function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function roundFloatToString(floatString) {
+    const floatValue = parseFloat(floatString);
+    const roundedValue = Math.round(floatValue * 10) / 10; // round to 1 decimal place
+    return roundedValue.toString();
+  }
+
 const displayCourts = (courtsToDisplay) => {
     const courtListDiv = document.getElementById("courtListDiv");
     courtListDiv.innerHTML = "";
@@ -96,7 +102,7 @@ const displayCourts = (courtsToDisplay) => {
         rating.className = "rating"
         const angka = document.createElement('td')
         angka.id = "angka"
-        angka.innerHTML = court.courtRating
+        angka.innerHTML = roundFloatToString(court.courtRating)
         const bintang = document.createElement('td')
         bintang.id = "bintang"
         bintang.innerHTML = "★"
