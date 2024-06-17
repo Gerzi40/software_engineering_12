@@ -77,12 +77,12 @@ select option[value=""] {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 20px;
     padding: 20px;
 }
 
-.grid-container div {
+.grid-container #grid_box {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -91,22 +91,85 @@ select option[value=""] {
     transition: transform 0.2s;
 }
 
-.grid-container div:hover {
+.grid-container #grid_box:hover {
     transform: scale(1.05);
 }
 
+
 .grid-container img {
     width: 100%;
-    height: 80%;
+    height: 60%;
     display: block;
     object-fit: cover;
 }
 
-.grid-container p {
+#name{
     margin: 0;
-    padding: 10px;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
     background-color: white;
     color: black;
-    font-size: 18px;
+    font-size: 25px;
+    font-weight: 630;
+}
+
+.div_loc_typ {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;  /* Vertically centers the items */
+    margin-top: 3px;
+    margin-left: 20px;
+}
+
+#icon_loc {
+    width: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    height: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    margin-right: 8px; /* Ruang antara ikon dan teks */
+}
+
+.div_loc_typ td {
+    margin-left: 5px; /* Menghapus margin default dari elemen p */
+    font-size: 16px; /* Sesuaikan ukuran teks sesuai kebutuhan */
+}
+
+.div_sport_typ{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;  /* Vertically centers the items */
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+#icon_sport{
+    width: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    height: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    margin-right: 8px; /* Ruang antara ikon dan teks */
+}
+
+.div_sport_typ td {
+    margin-left: 5px; /* Menghapus margin default dari elemen p */
+    font-size: 16px; /* Sesuaikan ukuran teks sesuai kebutuhan */
+}
+
+.rating{
+    margin-top: 20px;
+    margin-left: 28px;
+}
+
+.rating #angka{
+    font-size: 20px;
+    font-weight: 400;
+    padding-right: 5px
+}
+
+.rating #bintang{
+    color: #FFA534;
+    font-size: 23px;
+}
+
+.price{
+    
+    margin-left: 25px;
+    font-size: 23px;
+    font-weight: 500;
 }

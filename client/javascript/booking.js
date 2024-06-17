@@ -32,6 +32,10 @@ window.onload = async () => {
         price.innerHTML = '-'
         const status = document.createElement('td')
         status.innerHTML = '-'
+        const rating = document.createElement('td')
+        rating.innerHTML = '-'
+        // const text = document.createElement('td')
+        // text.innerHTML = 'No Booking Yet, Please book at the court Page!'
 
         tr.appendChild(name)
         tr.appendChild(type)
@@ -39,8 +43,10 @@ window.onload = async () => {
         tr.appendChild(time)
         tr.appendChild(price)
         tr.appendChild(status)
+        tr.appendChild(rating)
 
         document.getElementById("bookingTable").appendChild(tr)
+       // document.getElementById("No-Booking").appendChild(text)
         return;
     }
 
@@ -213,15 +219,18 @@ window.onload = async () => {
         }
         const court = await getCourtByCourtId(document.getElementById('terserah').value)
         const ratings = court[0].courtRating;
+        console.log(ratings)
         const rating_count = court[0].courtRatingCount;
+        console.log(rating_count)
         const a = ((ratings * rating_count) + rating) / rating_count + 1 
+        console.log(a)
         const kuda = await updateCourtRating(document.getElementById('terserah').value, a, rating_count+1)
         const rest = await updateScheduleRating(document.getElementById('terserah').value, document.getElementById('terserah1').value, document.getElementById('terserah2').value, rating) 
         document.getElementById('pop-up').style.display = 'none'
+        window.location.reload();
     })
 
     
-
     rating.appendChild(span1)
     rating.appendChild(span2)
     rating.appendChild(span3)
