@@ -198,6 +198,7 @@ const fillScheduleDiv = async (date) => {
             label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
 
             const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId = scheduleType.scheduleTypeId)
+            console.log(scheduleTypeIds)
             console.log(theSchedule)
 
             // const user = await getUserByUserId(theSchedule.renterId)
