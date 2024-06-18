@@ -159,7 +159,7 @@ app.get("/schedule/court-id/:courtId/date/:date", (req, res) => {
     const courtId = req.params.courtId
     const date = req.params.date
 
-    db.query("SELECT * FROM schedule WHERE courtId = ? AND scheduleDate = ?", [courtId, date], (err, result) => {
+    db.query("SELECT * FROM schedule JOIN user ON schedule.renterId = user.userId WHERE courtId = ? AND scheduleDate = ?", [courtId, date], (err, result) => {
         if(err){
             res.send({message: err})
         } else {

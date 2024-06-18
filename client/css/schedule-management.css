@@ -136,3 +136,11 @@
     color: #FFA534;
     font-weight: 900;
 }
+
+#renterInfo > div {
+    display: flex;
+}
+
+#renterInfo > div > div:nth-child(1) {
+    width: 20%;
+}

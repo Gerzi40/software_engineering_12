@@ -1,4 +1,4 @@
-import { getCourtByCourtId, getScheduleByCourtIdAndDate, getScheduleTypes, insertSchedule } from "./module.js"
+import { getCourtByCourtId, getScheduleByCourtIdAndDate, getScheduleTypes, getUserByUserId, insertSchedule } from "./module.js"
 
 const dateInput = document.getElementById("dateInput")
 const scheduleDiv = document.getElementById('scheduleDiv')
@@ -139,7 +139,7 @@ const fillScheduleDiv = async (date) => {
 
     const scheduleTypes = await getScheduleTypes()
     let scheduleTypeIds = await getScheduleByCourtIdAndDate(courtId, date)
-    scheduleTypeIds = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
+    let scheduleTypeIds2 = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
     
     const currentDate = new Date()
     const currentTime = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`
@@ -147,11 +147,11 @@ const fillScheduleDiv = async (date) => {
     scheduleDiv.innerHTML = ""
 
     // value checkbox merupakan scheduletypeid
-    scheduleTypes.forEach((scheduleType, index) => {
+    scheduleTypes.forEach(async (scheduleType, index) => {
 
 
         // gada di table schedule ato uda melewati waktu
-        if(scheduleTypeIds.indexOf(index + 1) == -1 && (currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA'))) {
+        if(scheduleTypeIds2.indexOf(index + 1) == -1) {
 
             const div = document.createElement("div")
             const checkBox = document.createElement("input")
@@ -160,17 +160,13 @@ const fillScheduleDiv = async (date) => {
             checkBox.value = index + 1
             checkBox.name = 'hour'
             checkBox.addEventListener('change', async (event) => {
-                hiddenInput.value = event.target.value
-                manualBookButton.style.display = 'block'
-                // let checkBoxs = document.querySelectorAll('input[type="checkbox"]:checked');
-                // const amount = checkBoxs.length
-                // const court = await getCourtByCourtId(courtId)
-                // const totalCourtPriceInInt = parseInt(court[0].courtPrice, 10) * amount;
-                // let totalCourtPriceInString = (totalCourtPriceInInt / 1000).toLocaleString('id-ID', {
-                //     minimumFractionDigits: 3,
-                //     maximumFractionDigits: 3
-                //   }).replace(',', '.')
-                // document.getElementById("totalPrice").innerHTML = `Rp ${totalCourtPriceInString}`
+
+                if(currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA')) {
+                    hiddenInput.value = event.target.value
+                    document.getElementById('resultAfterClickDiv').innerHTML = '<div id="manualBookButton">Manual Book</div>'
+                } else {
+                    document.getElementById('resultAfterClickDiv').innerHTML = 'waktunya lewat'
+                }
             })
 
             const label = document.createElement("label")
@@ -184,10 +180,50 @@ const fillScheduleDiv = async (date) => {
 
         } else {
 
+            const dates = document.querySelector('input[name="date"]:checked').value
+            const [a, b, c] = dates.split('-');
+
+            // Create a new Date object (note: month is zero-based in JavaScript Date)
+            const dateObject = new Date(a, b - 1, c);
+
+            let dayOfWeek = dateObject.toLocaleString('default', { weekday: 'long' }); // Short day name (e.g., "Tue")
+            let month = dateObject.toLocaleString('default', { month: 'long' }); // Short month name (e.g., "Jun")
+            let date = dateObject.getDate().toString().padStart(2, '0'); // Day of the month
+            let year = dateObject.getFullYear(); // Full year
+
+
             const div = document.createElement("div")
             const label = document.createElement("label")
             label.className = 'disabledLabel'
             label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
+
+            const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId = scheduleType.scheduleTypeId)
+            console.log(theSchedule)
+
+            // const user = await getUserByUserId(theSchedule.renterId)
+
+            div.addEventListener('click', () => {
+                document.getElementById('resultAfterClickDiv').innerHTML = `
+                    <div id="renterInfo">
+                        <div>
+                            <div>Date</div>
+                            <div>: ${date} ${month} ${year}</div>
+                        </div>
+                        <div>
+                            <div>Hour</div>
+                            <div>: ${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}</div>
+                        </div>
+                        <div>
+                            <div>Renter Id</div>
+                            <div>: ${theSchedule.renterId}</div>
+                        </div>
+                        <div>
+                            <div>Renter Name</div>
+                            <div>: ${theSchedule.userName}</div>
+                        </div>
+                    </div>
+                `
+            })
 
             div.appendChild(label)
             scheduleDiv.appendChild(div)
@@ -196,20 +232,3 @@ const fillScheduleDiv = async (date) => {
     });
 
 }
-
-manualBookButton.addEventListener('click', async () => {
-
-    const courtId = getParam('court-id')
-    // const date = dateInput.value
-    const date = document.querySelector('input[name="date"]:checked').value;
-    const typeId = hiddenInput.value
-    const userId = localStorage.getItem('user')
-
-    const res = await insertSchedule(courtId, date, [typeId], userId)
-    console.log(res)
-
-    if(res.message == 'Insert Schedule Success') {
-        window.location.reload()
-    }
-    
-})
