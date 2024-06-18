@@ -1,5 +1,25 @@
 import { getScheduleByRenterId, getUserByUserId, updateScheduleRating, updateCourtRating, getCourtByCourtId } from "./module.js"
 
+function compare( a, b ) {
+    if ( a.scheduleDate < b.scheduleDate){
+      return 1;
+    }
+    if ( a.scheduleDate > b.scheduleDate){
+      return -1;
+    }
+    return 0;
+}
+function compare2( a, b ) {
+    if(a.scheduleDate == b.scheduleDate) {
+        if ( a.scheduleTypeId < b.scheduleTypeId){
+          return 1;
+        }
+        if ( a.scheduleTypeId > b.scheduleTypeId){
+          return -1;
+        }
+    }
+    return 0;
+}
 
 window.onload = async () => {
 
@@ -15,7 +35,7 @@ window.onload = async () => {
         window.location.href = "./index.html"
     }
 
-    const schedules = await getScheduleByRenterId(userId)
+    let schedules = await getScheduleByRenterId(userId)
 
     if (schedules.length == 0) {
         const tr = document.createElement('tr')
@@ -49,6 +69,9 @@ window.onload = async () => {
        // document.getElementById("No-Booking").appendChild(text)
         return;
     }
+
+    schedules.sort( compare );
+    schedules.sort( compare2 );
 
     schedules.forEach(schedule => {
         const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)
