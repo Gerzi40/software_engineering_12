@@ -70,8 +70,8 @@ window.onload = async () => {
         return;
     }
 
-    schedules.sort( compare );
-    schedules.sort( compare2 );
+    schedules.sort(compare);
+    schedules.sort(compare2);
 
     schedules.forEach(schedule => {
         const dbStartDate = new Date(`${schedule.scheduleDate}T${schedule.startTime}`)
