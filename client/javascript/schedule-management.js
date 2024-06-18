@@ -65,6 +65,10 @@ const fillDateDiv = () => {
 
 }
 
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 window.onload = async () => {
 
     const userId = localStorage.getItem("user")
@@ -96,15 +100,16 @@ window.onload = async () => {
         <div>
             <img src="${court[0].courtImage}" />
         </div>
-        <div>
+        <div class="detail_court">
             <h1>${court[0].courtName}</h1>
-            <p>
-                &emsp;
-                &emsp;
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic expedita quas vero et. Mollitia excepturi nulla similique ipsam maiores incidunt nesciunt voluptatem aliquam ad nemo repellat quidem, deserunt rem maxime.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic expedita quas vero et. Mollitia excepturi nulla similique ipsam maiores incidunt nesciunt voluptatem aliquam ad nemo repellat quidem, deserunt rem maxime.
-            </p>
-            <p>
+            <br>
+            <div>Address: ${court[0].courtAddress}</div>
+            <div>Sport Type: ${court[0].courtTypeName}</div>
+            <div>Court Price: Rp. ${formatNumber(court[0].courtPrice)}</div>
+            <div class="ratingsssss">
+                <p>Rating: ${court[0].courtRating}</p>
+                <p id="bintang">★</p>
+            </div>
         </div>
     `
 

@@ -41,11 +41,6 @@
     background-color: #EDEDED;
 }
 
-.page-title{
-    border-radius: 4px;
-    font-family: "Montserrat", sans-serif;
-}
-
 .sub-form > h1 {
     margin: 0;
 }
@@ -192,4 +187,18 @@ input[type="checkbox"]:checked + label {
     font-size: 2rem;
     font-weight: 700;
     color: #165CD9;
+}
+
+.ratingsssss{
+    display: flex;
+}
+
+.ratingsssss p{
+    margin: 0;
+    margin-right: 5px;
+}
+
+.ratingsssss #bintang{
+    color: #FFA534;
+    font-weight: 900;
 }

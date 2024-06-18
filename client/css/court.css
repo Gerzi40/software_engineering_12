@@ -76,10 +76,18 @@ select option[value=""] {
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    padding: 20px;
+    padding: 20px; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.grid-container > div{
+    width: 356px;
+    height: 400px;
 }
 
 .grid-container #grid_box {
@@ -105,31 +113,32 @@ select option[value=""] {
 
 #name{
     margin: 0;
-    padding: 20px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     text-align: left;
     background-color: white;
     color: black;
-    font-size: 25px;
+    font-size: 17px;
     font-weight: 630;
 }
 
 .div_loc_typ {
     display: flex;
-    /* flex-direction: column; */
-    align-items: center;  /* Vertically centers the items */
+    align-items: center;
     margin-top: 3px;
     margin-left: 20px;
 }
 
 #icon_loc {
-    width: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
-    height: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
-    margin-right: 8px; /* Ruang antara ikon dan teks */
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
 }
 
 .div_loc_typ td {
-    margin-left: 5px; /* Menghapus margin default dari elemen p */
-    font-size: 16px; /* Sesuaikan ukuran teks sesuai kebutuhan */
+    margin-left: 5px;
+    font-size: 11px;
 }
 
 .div_sport_typ{
@@ -141,35 +150,34 @@ select option[value=""] {
 }
 
 #icon_sport{
-    width: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
-    height: 24px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    width: 15px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+    height: 15px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
     margin-right: 8px; /* Ruang antara ikon dan teks */
 }
 
 .div_sport_typ td {
     margin-left: 5px; /* Menghapus margin default dari elemen p */
-    font-size: 16px; /* Sesuaikan ukuran teks sesuai kebutuhan */
+    font-size: 11px; /* Sesuaikan ukuran teks sesuai kebutuhan */
 }
 
 .rating{
-    margin-top: 20px;
+    margin-top: 14px;
     margin-left: 28px;
 }
 
 .rating #angka{
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
     padding-right: 5px
 }
 
 .rating #bintang{
     color: #FFA534;
-    font-size: 23px;
+    font-size: 20px;
 }
 
 .price{
-    
     margin-left: 25px;
-    font-size: 23px;
+    font-size: 15px;
     font-weight: 500;
 }

@@ -64,7 +64,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(207, 207, 207);
+    background-color: rgb(235, 235, 235);
     z-index: 2;
     border-radius: 8px;
 }
@@ -104,23 +104,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 25px;
+    margin-top: 4.5rem;
     margin-bottom: 1rem;
-    font-size: 3vh;
+    font-size: 26px;
+    font-weight: 500;
   }
   
   .star_div {
-    margin-top: 3rem;
+    margin-top: 5rem;
     display: flex;
     justify-content: center;
     gap: 0.7rem;
-    font-size: 3rem;
     cursor: pointer;
   }
   
   .star {
     /* Your existing star styles */
-    font-size: 130px;
+    font-size: 60px;
     cursor: pointer;
     
   }
@@ -138,11 +138,11 @@
   
   #rateButton {
     /* Your existing button styles */
-    margin-top: 3rem;
+    margin-top: 5rem;
     align-items: center;
     border: 2px solid #165CD9;
     border-radius: 0.3rem;
-    padding: 12px 22px;
+    padding: 8px 24px;
     cursor: pointer;
     user-select: none;
     font-weight: 500;
