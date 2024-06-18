@@ -5,7 +5,8 @@
 }
 
 .container_div {
-    width: 88vh;
+    /* width: 88vh;  kalau buat biasa yg bwh buat f11*/
+    width: 75vh;
     height: 420px;
     background-color: #ffffff;
     border-radius: 8px;
