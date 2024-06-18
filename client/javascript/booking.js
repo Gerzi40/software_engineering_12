@@ -101,6 +101,8 @@ window.onload = async () => {
         if(schedule.isRated != 1){
             const tdtd = document.createElement('td')
             const rateButton = document.createElement('button')
+            const strip = document.createElement('td')
+            strip.innerHTML = '-'
             // rateButton.id = 'Button' + schedules.courtId
             rateButton.innerHTML = "Rate Here!"
             rateButton.className = "RateButton"
@@ -111,8 +113,14 @@ window.onload = async () => {
                 document.getElementById('terserah1').value = schedule.scheduleDate
                 document.getElementById('terserah2').value = schedule.scheduleTypeId
             })
-            tdtd.appendChild(rateButton)
-            tr.appendChild(tdtd)
+            if(currentDate > dbEndDate){
+                tdtd.appendChild(rateButton)
+                tr.appendChild(tdtd)
+            }
+            else{
+                tdtd.appendChild(strip)
+                tr.appendChild(tdtd)
+            }
         }
         else{
             const rating = document.createElement('td')

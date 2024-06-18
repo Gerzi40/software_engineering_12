@@ -1,11 +1,12 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;
 }
 
 .container_div {
+    width: 88vh;
+    height: 420px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

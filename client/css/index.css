@@ -143,6 +143,7 @@ body {
     padding: 0.5rem;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
 #form > div > select {
@@ -154,6 +155,8 @@ body {
     /* padding-right: 1rem; */
     font-size: 1.2rem;
     color: grey;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
 #form > div > select option {
@@ -166,9 +169,20 @@ body {
     padding: 0.5rem;
     text-align: center;
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     border-radius: 0.5rem;
     cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#form > div > input:hover, #form > div > select:hover{
+    border-color: #165CD9;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+#form > div > div:hover{
+    background-color: #092d69;
 }
 
 #header3 {
