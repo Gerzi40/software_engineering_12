@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/payment.css">
 </head>
 <body>
     
     <div class="min-height-100vh" id="paymentDiv">
-
+        <img src="./asset/home/qr.png" id="qrImage" />
+        <div id="confirmButton">Confirm Payment</div>
     </div>
 
     <div id="background"></div>
-    <div id="paymentPopUp">berhasil. redirecting....</div>
+    <div id="paymentPopUp">
+        <h1>Payment Success</h1>
+        <p>Redirecting...</p>
+    </div>
 
     <script type="module" src="./javascript/payment.js"></script>
 
