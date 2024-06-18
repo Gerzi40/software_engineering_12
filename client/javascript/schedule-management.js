@@ -117,14 +117,9 @@ window.onload = async () => {
 
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(today.getDate()).padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
+    const date = today.toISOString().split('T')[0];
 
-    console.log(formattedDate)
-
-    fillScheduleDiv(formattedDate)
+    fillScheduleDiv(date)
     
 }
 
@@ -144,7 +139,6 @@ const fillScheduleDiv = async (date) => {
 
     const scheduleTypes = await getScheduleTypes()
     let scheduleTypeIds = await getScheduleByCourtIdAndDate(courtId, date)
-    console.log(scheduleTypeIds)
     let scheduleTypeIds2 = scheduleTypeIds.map(scheduleType => {return scheduleType.scheduleTypeId})
     
     const currentDate = new Date()
@@ -169,13 +163,9 @@ const fillScheduleDiv = async (date) => {
 
                 if(currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA')) {
                     hiddenInput.value = event.target.value
-                    document.getElementById('renterInfo').style.display = 'none'
-                    document.getElementById('waktuAbis').style.display = 'none'
-                    document.getElementById('manualBookButton').style.display = 'block'
+                    document.getElementById('resultAfterClickDiv').innerHTML = '<div id="manualBookButton">Manual Book</div>'
                 } else {
-                    document.getElementById('renterInfo').style.display = 'none'
-                    document.getElementById('waktuAbis').style.display = 'block'
-                    document.getElementById('manualBookButton').style.display = 'none'
+                    document.getElementById('resultAfterClickDiv').innerHTML = 'waktunya lewat'
                 }
             })
 
@@ -207,34 +197,32 @@ const fillScheduleDiv = async (date) => {
             label.className = 'disabledLabel'
             label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
 
-            const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId == scheduleType.scheduleTypeId)
-            // console.log(theSchedule)
+            const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId = scheduleType.scheduleTypeId)
+            console.log(theSchedule)
 
             // const user = await getUserByUserId(theSchedule.renterId)
 
             div.addEventListener('click', () => {
-                console.log(theSchedule)
-                document.getElementById('renterInfo').innerHTML = `
-                    <div>
-                        <div>Date</div>
-                        <div>: ${date} ${month} ${year}</div>
-                    </div>
-                    <div>
-                        <div>Hour</div>
-                        <div>: ${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}</div>
-                    </div>
-                    <div>
-                        <div>Renter Id</div>
-                        <div>: ${theSchedule.renterId}</div>
-                    </div>
-                    <div>
-                        <div>Renter Name</div>
-                        <div>: ${theSchedule.userName}</div>
+                document.getElementById('resultAfterClickDiv').innerHTML = `
+                    <div id="renterInfo">
+                        <div>
+                            <div>Date</div>
+                            <div>: ${date} ${month} ${year}</div>
+                        </div>
+                        <div>
+                            <div>Hour</div>
+                            <div>: ${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}</div>
+                        </div>
+                        <div>
+                            <div>Renter Id</div>
+                            <div>: ${theSchedule.renterId}</div>
+                        </div>
+                        <div>
+                            <div>Renter Name</div>
+                            <div>: ${theSchedule.userName}</div>
+                        </div>
                     </div>
                 `
-                document.getElementById('renterInfo').style.display = 'block'
-                document.getElementById('waktuAbis').style.display = 'none'
-                document.getElementById('manualBookButton').style.display = 'none'
             })
 
             div.appendChild(label)
@@ -244,21 +232,3 @@ const fillScheduleDiv = async (date) => {
     });
 
 }
-
-
-manualBookButton.addEventListener('click', async () => {
-
-    const courtId = getParam('court-id')
-    // const date = dateInput.value
-    const date = document.querySelector('input[name="date"]:checked').value;
-    const typeId = hiddenInput.value
-    const userId = localStorage.getItem('user')
-
-    const res = await insertSchedule(courtId, date, [typeId], userId)
-    console.log(res)
-
-    if(res.message == 'Insert Schedule Success') {
-        // window.location.reload()
-    }
-
-})

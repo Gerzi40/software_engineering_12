@@ -114,12 +114,9 @@ window.onload = async () => {
 
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(today.getDate()).padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
+    const date = today.toISOString().split('T')[0];
 
-    fillScheduleDiv(formattedDate)
+    fillScheduleDiv(date)
 
 }
 
