@@ -166,9 +166,13 @@ const fillScheduleDiv = async (date) => {
 
                 if(currentTime < scheduleType.startTime || date > currentDate.toLocaleDateString('en-CA')) {
                     hiddenInput.value = event.target.value
-                    document.getElementById('resultAfterClickDiv').innerHTML = '<div id="manualBookButton">Manual Book</div>'
+                    document.getElementById('manualBookButton').style.display = 'block'
+                    document.getElementById('waktu_lewat').style.display = 'none'
+                    document.getElementById('renterinfo').style.display = 'none'
                 } else {
-                    document.getElementById('resultAfterClickDiv').innerHTML = 'waktunya lewat'
+                    document.getElementById('manualBookButton').style.display = 'none'
+                    document.getElementById('waktu_lewat').style.display = 'block'
+                    document.getElementById('renterinfo').style.display = 'none'
                 }
             })
 
@@ -206,8 +210,7 @@ const fillScheduleDiv = async (date) => {
             // const user = await getUserByUserId(theSchedule.renterId)
 
             div.addEventListener('click', () => {
-                document.getElementById('resultAfterClickDiv').innerHTML = `
-                    <div id="renterInfo">
+                document.getElementById('renterinfo').innerHTML = `
                         <div>
                             <div>Date</div>
                             <div>: ${date} ${month} ${year}</div>
@@ -224,14 +227,37 @@ const fillScheduleDiv = async (date) => {
                             <div>Renter Name</div>
                             <div>: ${theSchedule.userName}</div>
                         </div>
-                    </div>
                 `
+
+                document.getElementById('manualBookButton').style.display = 'none'
+                document.getElementById('waktu_lewat').style.display = 'none'
+                document.getElementById('renterinfo').style.display = 'block'
             })
+
+            
 
             div.appendChild(label)
             scheduleDiv.appendChild(div)
+            
 
         }
     });
 
 }
+
+manualBookButton.addEventListener('click', async () => {
+
+    const courtId = getParam('court-id')
+    // const date = dateInput.value
+    const date = document.querySelector('input[name="date"]:checked').value;
+    const typeId = hiddenInput.value
+    const userId = localStorage.getItem('user')
+
+    const res = await insertSchedule(courtId, date, [typeId], userId)
+    console.log(res)
+
+    if(res.message == 'Insert Schedule Success') {
+        window.location.reload()
+    }
+
+})

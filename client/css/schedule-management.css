@@ -137,10 +137,11 @@
     font-weight: 900;
 }
 
-#renterInfo > div {
+#renterinfo > div {
     display: flex;
 }
 
-#renterInfo > div > div:nth-child(1) {
+#renterinfo > div > div:nth-child(1) {
     width: 20%;
 }
+
