@@ -117,9 +117,12 @@ window.onload = async () => {
 
     // tanggal yang diselect di calender minimal hari ini
     const today = new Date();
-    const date = today.toISOString().split('T')[0];
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
 
-    fillScheduleDiv(date)
+    fillScheduleDiv(formattedDate)
     
 }
 
@@ -197,7 +200,7 @@ const fillScheduleDiv = async (date) => {
             label.className = 'disabledLabel'
             label.innerHTML = `${scheduleType.startTime.slice(0, 5)} - ${scheduleType.endTime.slice(0, 5)}`
 
-            const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId = scheduleType.scheduleTypeId)
+            const theSchedule = scheduleTypeIds.find(schedule => schedule.scheduleTypeId == scheduleType.scheduleTypeId)
             console.log(theSchedule)
 
             // const user = await getUserByUserId(theSchedule.renterId)
