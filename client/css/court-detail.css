@@ -11,9 +11,23 @@
     padding: 1rem;
 }
 
-#imageDiv > img {
+#courtDetailDiv {
+    display: flex;
+    gap: 2rem;
+}
+
+#courtDetailDiv > div {
+    width: 50%;
+}
+
+#courtDetailDiv > div:nth-child(1) > img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 1rem;
+}
+
+#courtDetailDiv > div:nth-child(2) {
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 #formTitle {

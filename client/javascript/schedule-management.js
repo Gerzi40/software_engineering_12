@@ -93,13 +93,19 @@ window.onload = async () => {
     }
 
     document.getElementById("courtDetailDiv").innerHTML = `
-        <div>court id: ${court[0].courtId}</div>
-        <div>name: ${court[0].courtName}</div>
-        <div>address: ${court[0].courtAddress}</div>
-        <div>type: ${court[0].courtTypeName}</div>
-        <div>price: ${court[0].courtPrice}</div>
-        <div>rating: ${court[0].courtRating}</div>
-        <div>rating count: ${court[0].courtRatingCount}</div>
+        <div>
+            <img src="${court[0].courtImage}" />
+        </div>
+        <div>
+            <h1>${court[0].courtName}</h1>
+            <p>
+                &emsp;
+                &emsp;
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic expedita quas vero et. Mollitia excepturi nulla similique ipsam maiores incidunt nesciunt voluptatem aliquam ad nemo repellat quidem, deserunt rem maxime.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic expedita quas vero et. Mollitia excepturi nulla similique ipsam maiores incidunt nesciunt voluptatem aliquam ad nemo repellat quidem, deserunt rem maxime.
+            </p>
+            <p>
+        </div>
     `
 
     fillDateDiv()
