@@ -18,4 +18,5 @@ body {
     color: white;
     padding: 1rem;
     width: fit-content;
+    border-radius: 7px;
 }

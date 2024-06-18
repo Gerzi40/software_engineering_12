@@ -82,7 +82,7 @@ function roundFloatToString(floatString) {
     const floatValue = parseFloat(floatString);
     const roundedValue = Math.round(floatValue * 10) / 10; // round to 1 decimal place
     return roundedValue.toString();
-  }
+}
 
 const displayCourts = (courtsToDisplay) => {
     const courtListDiv = document.getElementById("courtListDiv");

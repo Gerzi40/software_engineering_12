@@ -1,21 +1,15 @@
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     gap: 20px;
     padding: 20px;
 }
 
-.grid-container div {
+.container_div {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.grid-container div:hover {
-    transform: scale(1.05);
 }
 
 .grid-container img {
@@ -28,8 +22,37 @@
 .grid-container p {
     margin: 0;
     padding: 10px;
-    text-align: center;
+    padding-left: 20px;
+    text-align: left;
     background-color: white;
     color: black;
     font-size: 18px;
+    font-weight: 600;
 }
+
+.button_div{
+    display: flex;
+    justify-content: center;
+}
+
+.button_div button{
+    margin-left: 5px;
+    margin-right: 5px;
+    align-items: center;
+    border: 2px solid #1d4b9a;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    color: white;
+    background-color:#165CD9;
+    transition: background-color 0.5s ease-in-out,  color 0.5s ease-in-out;
+}
+
+.button_div button:hover{
+    background-color: #092d69;
+    border-color: #165CD9;
+    color: rgb(225, 225, 225);
+}
+
